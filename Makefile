@@ -33,7 +33,7 @@ SRC_LIST		=	$(WINDOW_PATH)window.c	\
 					$(MAP_PATH)linked_list.c		\
 					$(MAP_PATH)run_through_map.c		\
           			$(RENDER_PATH)bresenham.c	\
-					init_data.c cub3d.c 
+					init_data.c cub3d.c error.c
 SRCS			= $(addprefix $(SRC_DIR),$(SRC_LIST))
 
 #objects

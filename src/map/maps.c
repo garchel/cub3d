@@ -27,18 +27,15 @@ int    get_files(t_map_info *map, int ***map_matrix, char** argv)
 
     fd = open(ft_strjoin("maps/",argv[1]), O_RDONLY);
     if(fd < 0 )
-        return FILE_NO_ERR;
+        error_message(FILE_NO_ERR);
     if(check_arg(argv) == 0)
-        return FILE_NAME_ERR;
+        error_message(FILE_NAME_ERR);
     if(alloc_structs(&map) == 0)
-        return ALLOC_ERR;
+        error_message(ALLOC_ERR);
     current_line = next_line(fd);
     identifier = ft_split(current_line,' ')[0];
     status = get_elements(current_line, identifier, &map, fd);
-    (*map_matrix) = create_map(fd, current_line);
-    if(map_matrix == NULL)
-        status = PARSE_MAP;    
-    // print_map_maps((*map_matrix));
+    (*map_matrix) = create_map(fd, current_line); //vai pegar todas as informações vinda do mapa
     return status;
 }
 
@@ -71,6 +68,7 @@ char *next_line(int fd)
     return current_line;
 }
 
+// guarda as informações das cores e texturas independete da ordem em que elas aparecem no arquivo
 static int get_elements(char *current_line, char *ident, t_map_info **map, int fd)
 {
     int i;
@@ -78,23 +76,23 @@ static int get_elements(char *current_line, char *ident, t_map_info **map, int f
     i = 0;
     while(i < 2)
     {
-        if(!ft_strncmp(ident,"NO",2) || !ft_strncmp(ident,"SO",2) ||
-         !ft_strncmp(ident,"EA",2) || !ft_strncmp(ident,"WE",2))
+        if(!ft_strncmp(ident,"NO",2) || !ft_strncmp(ident,"SO",2) || //vai verificar se é o momento de pegar as
+         !ft_strncmp(ident,"EA",2) || !ft_strncmp(ident,"WE",2))     //informações de texturas
         {
             if(map_textures(fd, (**map).textures, current_line) == 0)
-                return TEXTURE_ERR;
+                error_message(TEXTURE_ERR);
             ident = "F";
             current_line = get_next_line(fd);
         }
-        else if(!ft_strncmp(ident,"F",1) || !ft_strncmp(ident,"C",1))
-        {
+        else if(!ft_strncmp(ident,"F",1) || !ft_strncmp(ident,"C",1)) //vai ver se é o momento de pegar as informações
+        {                                                             //das cores
             if(colors(fd, (**map).colors, current_line) == 0)
-                return COLOR_ERR;
+                error_message(COLOR_ERR);
             ident = "NO";
             current_line = get_next_line(fd);
         }
         else
-            return ID_FAIL;
+            error_message(ID_FAIL);
         ++i;
     }
     return 1;

@@ -8,7 +8,7 @@ void print_map_create(int **matrix)
     int i = 0;
     int j = 0;
 
-    while(matrix[i][j])
+    while(i < 18)
     {
         j = 0;
         while(matrix[i][j] != -1)
@@ -30,7 +30,7 @@ int **create_map(int fd, char *current_line)
     head = create_list();
     current_line = next_line(fd);
     size = 0;
-    while(current_line[0] != 0 && current_line[0] != '\n')
+    while(current_line[0] != 0 && current_line[0] != '\n') //gurdas todas a informações em uma lista encadeada
     {
         add_on_tail(head,current_line);
         current_line = get_next_line(fd);
@@ -38,10 +38,12 @@ int **create_map(int fd, char *current_line)
             break;
         ++size;
     }
-    map = linked_to_int(head, size);
-    if(check_walls(map, size) != 1)
-        return NULL;
-    normalize_matrix(map);
+    map = linked_to_int(head, size); //passa todas a informações para uma matriz
+    if(check_walls(map, size) != 1)  //verifica se todos os mapas estão cercados por paredes, se não existe nenhum
+    {                                //numero inválido e a posição inicial do jogador
+        error_message("ERROR: parse map error\n");
+    }
+    normalize_matrix(map);//adiciona um '-1' em todas a linha para identificar o final do mapa(para os mapas irregulares)
     // print_map_create(map);
     return map;
 }
@@ -71,8 +73,8 @@ int **linked_to_int(t_list_map *head,int size)
         head->begin = head->begin->next;
         ++i;
     }
-    // print_map_create(map);
     map[size + 1] = NULL;
+    // print_map_create(map);
     return map;
 }
 
@@ -137,6 +139,8 @@ t_coordinates first_empty_block(int **matrix, int size)
             if(matrix[pos.i][pos.j] == 3)
             {
                 final_pos = return_pos(matrix, pos);
+                if(matrix[final_pos.i][final_pos.j+1] == -1)
+                    error_message("invalid wall");
                 if(final_pos.status == 0)
                     return final_pos;
             }

@@ -4,6 +4,24 @@ int             run_through_up(int **matrix, t_coordinates pos, t_coordinates in
 int             run_through_down(int **matrix, t_coordinates pos, t_coordinates init_pos);
 t_coordinates get_initial_position(t_coordinates pos, int **matrix, int size);
 
+void print_map_run(int **matrix)
+{
+    int i = 0;
+    int j = 0;
+
+    while(i < 19)
+    {
+        j = 0;
+        while(matrix[i][j] != -1)
+        {
+            printf("%d", matrix[i][j]);
+            ++j;
+        }
+        printf("\n");
+        ++i;
+    }
+}
+
 int check_walls(int **matrix, int size)
 {
     t_coordinates   pos;
@@ -15,38 +33,8 @@ int check_walls(int **matrix, int size)
     --pos.j;
     while(pos.i != 0 && pos.j != 0)
     {
-        if(run_through_up(matrix, pos, pos) == PARSE_MAP)
-            return 0;
-        if(run_through_down(matrix, pos, pos) == PARSE_MAP)
-            return 0;
+        run_through_up(matrix, pos, pos);
         pos = first_empty_block(matrix, size);
-    }
-    return 1;
-}
-
-int run_through_down(int **matrix, t_coordinates pos, t_coordinates init_pos)
-{
-    ++pos.i;
-    while(matrix[pos.i][pos.j] != 1)
-    {
-        while(matrix[pos.i][pos.j] == 0)
-        {
-            matrix[pos.i][pos.j] = 3;
-            ++pos.j;
-        }
-        if(matrix[pos.i][pos.j] == -1)
-            return PARSE_MAP;
-        pos = init_pos;
-        ++pos.i;
-        --pos.j;
-        while(matrix[pos.i][pos.j] == 0)
-        {
-            matrix[pos.i][pos.j] = 3;
-            --pos.j;
-        }
-        pos = init_pos;
-        ++pos.i;
-        init_pos = pos;
     }
     return 1;
 }
@@ -57,13 +45,9 @@ int run_through_up(int **matrix, t_coordinates pos, t_coordinates init_pos)
     {
         while(matrix[pos.i][pos.j] == 0)
         {
-            if(pos.i == 0)
-                return PARSE_MAP;
             matrix[pos.i][pos.j] = 3;
             ++pos.j;
         }
-        if(matrix[pos.i][pos.j] == -1)
-            return PARSE_MAP;
         pos = init_pos;
         --pos.j;
         while(matrix[pos.i][pos.j] == 0)

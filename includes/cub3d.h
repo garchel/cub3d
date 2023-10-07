@@ -16,9 +16,10 @@
 # include "render.h"
 # include "error_message.h"
 
-#define WIN_X	1280
-#define WIN_Y	720
-#define PI		3.14159265
+#define TILE_SIZE   32
+#define WIN_X		1280
+#define WIN_Y		720
+#define PI			3.14159265
 
 typedef struct s_map	t_map;
 
@@ -55,5 +56,6 @@ void	arg_error();
 void	draw_player(t_data *data);
 int 	init_data(t_data *data,  char** argv);
 void	err_msg(int err_status);
+void	error_message(char *msg);
 
 #endif //CUB3D_H

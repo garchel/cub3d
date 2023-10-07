@@ -6,13 +6,6 @@
 #define UP 1
 #define DOWN 2
 
-// typedef struct s_map
-// {
-// 	int				size;
-// 	int				cont;
-// 	struct s_node	*next;
-// }	t_map;
-
 typedef struct s_textures
 {
 	char *NO;

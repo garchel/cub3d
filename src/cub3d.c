@@ -5,7 +5,7 @@ int	main(int argc, char **argv)
 	t_data data;
 	
 	if (argc != 2)
-		arg_error();
+		error_message("ERROR: invalid number of arguments");
 	if(init_data(&data, argv) == 0)
 		return (0);
 	init_window(&data);
