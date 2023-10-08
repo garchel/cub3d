@@ -48,7 +48,9 @@ typedef struct s_data
 	t_image		img;
 	t_player	player;
 	int         **matrix_map;
-	int         temp[10][10];
+	int         temp[11][25]; //apagar
+	int			win_height;
+	int			win_width;
 }	t_data;
 
 //cub3d.c

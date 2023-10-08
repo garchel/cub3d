@@ -52,10 +52,10 @@ void	draw_player(t_data *data)
 	bresenham(&(data->img), init, dest);
 }
 
-void	draw_wall(t_image *img, int x, int y)
+void	draw_wall(t_image *img, int y, int x)
 {
-	int	sizeX = x + 63;
-	int	sizeY = y + 63;
+	int	sizeX = x + TILE_SIZE;
+	int	sizeY = y + TILE_SIZE;
 	int i = x;
 	while (++i < sizeX)
 	{
@@ -67,18 +67,29 @@ void	draw_wall(t_image *img, int x, int y)
 
 void	draw_map(t_data *data)
 {
-	int x = 0;
-	int y = 0;
-	for (int i = 0; i < 10; i++)
+	int i;
+	int j;
+	int i_matrix;
+	int	j_matrix;
+	
+
+	i = 0;
+	j = 0;
+	i_matrix = 0;
+	j_matrix = 0;
+	while(i < data->win_height * TILE_SIZE)
 	{
-		x = 0;
-		for (int j = 0; j < 10; j++)
+		j = 0;
+		j_matrix = 0;
+		while(j < data->win_width * TILE_SIZE)
 		{
-			if (data->temp[i][j] == 1)
-				draw_wall(&(data)->img, x, y);
-			x += 64;
-		}	
-		y += 64;
+			if(data->matrix_map[i_matrix][j_matrix] == 1)
+				draw_wall(&(data)->img, i, j);
+			j += TILE_SIZE;
+			++j_matrix;
+		}
+		++i_matrix;
+		i += TILE_SIZE;
 	}
 }
 
@@ -86,6 +97,6 @@ void	draw(t_data *data)
 {
 	draw_background(&(data)->img);
 	draw_map(data);
-	draw_player(data);
+	// draw_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
