@@ -48,12 +48,9 @@ int	init_data(t_data *data, char** argv)
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
-	printf("-> %d\n", temp[3][6]);
-	alloc_matrix_temp(&data->matrix_map, temp);
-	print_map(data->matrix_map);
 	data->win_height = 11;
 	data->win_width = 25;
-	data->player.x = 350; 
-	data->player.y = 200;
+	alloc_matrix_temp(&data->matrix_map, temp);
+	init_player(data);
 	return 1;
 }

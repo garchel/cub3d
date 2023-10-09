@@ -6,6 +6,8 @@
 
 typedef struct s_image	t_image;
 typedef struct s_data	t_data;
+typedef struct s_player t_player;
+
 
 typedef struct s_point
 {
@@ -29,8 +31,11 @@ typedef struct s_bres
 void	put_pixel_img(t_image *img, int x, int y, int color);
 void	draw_background(t_image *img);
 void	draw(t_data *data);
+void	draw_square(t_image *img, int y, int x, int size, int color);
+void 	init_player(t_data *data);
 
 // bresenham.c
 void	bresenham(t_image *img, t_point init, t_point dest);
+
 
 #endif //REDER_H

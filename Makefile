@@ -25,14 +25,14 @@ SRC_DIR			=	./src/
 SRC_LIST		=	$(WINDOW_PATH)window.c	\
 					$(WINDOW_PATH)controls.c\
 					$(RENDER_PATH)draw.c	\
+					$(RENDER_PATH)player.c	\
+          			$(RENDER_PATH)bresenham.c	\
 					$(MAP_PATH)maps.c		\
 					$(MAP_PATH)textures.c		\
 					$(MAP_PATH)colors.c		\
-					$(MAP_PATH)error_msg.c		\
 					$(MAP_PATH)create_map.c		\
 					$(MAP_PATH)linked_list.c		\
 					$(MAP_PATH)run_through_map.c		\
-          			$(RENDER_PATH)bresenham.c	\
 					init_data.c cub3d.c error.c
 SRCS			= $(addprefix $(SRC_DIR),$(SRC_LIST))
 

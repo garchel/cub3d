@@ -6,6 +6,7 @@
         "render.h": "c",
         "maps.h": "c",
         "cub3d.h": "c",
-        "error_message.h": "c"
+        "error_message.h": "c",
+        "*.tcc": "c"
     }
 }
