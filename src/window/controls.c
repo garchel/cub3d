@@ -13,6 +13,8 @@ void	buttons_hook(t_data *data)
 int	key_press(int key, t_data *data)
 {
     data->player.rotation_speed = 2 * (PI / 180);
+	data->player.turn_direction = 0;
+	data->player.walk_direction = 0;
 
 	if (key == ESC_KEY)
 		exit_button(data);
@@ -24,7 +26,7 @@ int	key_press(int key, t_data *data)
 	 	data->player.turn_direction = +1;
 	if (key == LEFT_KEY)
 		data->player.turn_direction = -1;
-	data->player.rotation_angle += data->player.turn_direction * data->player.rotation_speed;
+		
 	draw(data);
 	return (0);
 }

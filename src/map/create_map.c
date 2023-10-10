@@ -3,7 +3,7 @@
 int is_valid(int block);
 int **linked_to_int(t_list_map *head,int size);
 
-void print_map_create(int **matrix)
+void print_map_create(int **matrix) //temporário. apenas para debug
 {
     int i = 0;
     int j = 0;
