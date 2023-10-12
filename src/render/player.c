@@ -2,10 +2,64 @@
 
 #define TEMP_LINE_SIZE 5
 #define MOVE_SPEED 2
+#define FOV 60 * (PI / 180)
+#define NUM_RAYS 40
 
 void draw_direction_line(t_data *data, t_point init);
 void move_player(t_data *data);
 int colision_detector(int new_player_y, int new_player_x, t_data *data);
+
+void draw_cast(t_data *data, t_point init)
+{
+    double cast_ray;
+    t_point dest;
+    int new_cast_x;
+    int new_cast_y;
+
+    cast_ray = data->player.rotation_angle - (FOV/2);
+
+    
+
+    int i = 0;
+    int j = 0;
+    while(i < NUM_RAYS)
+    {
+        j = 0;
+        while(1)
+        {
+            new_cast_x = init.x + cos(cast_ray) * j;
+            new_cast_y = init.y + sin(cast_ray) * j;
+            if(colision_detector(new_cast_y, new_cast_x , data) == 0)
+            {
+                dest.x = new_cast_x;
+                dest.y = new_cast_y;
+                bresenham(&data->img, init, dest);  
+            }
+            else
+                break;
+            ++j;
+        }
+        cast_ray += FOV / NUM_RAYS;
+
+        ++i;
+    }
+
+
+    // double cast_ray;
+    // t_point dest;
+
+    // cast_ray = data->player.rotation_angle - (FOV/2);
+    // int i = 0;
+    // while(i < NUM_RAYS)
+    // {
+    //     dest.x = init.x + cos(cast_ray) * 30;
+    //     dest.y = init.y + sin(cast_ray) * 30;
+    //     bresenham(&data->img, init, dest);
+    //     cast_ray += FOV / NUM_RAYS;
+
+    //     ++i;
+    // }
+}
 
 void	handle_player(t_data *data)
 {
@@ -29,6 +83,7 @@ void	handle_player(t_data *data)
 	data->player.rotation_angle += data->player.turn_direction * data->player.rotation_speed;
     move_player(data);
     draw_direction_line(data, init);
+    draw_cast(data, init);
 }
 
 void init_player(t_data *data)
