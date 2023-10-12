@@ -16,19 +16,18 @@
 # include "render.h"
 # include "error_message.h"
 
-#define TILE_SIZE   50
-#define WIN_HEIGHT	1280
-#define WIN_WIDTH	720
+#define TILE_SIZE   42
 #define PI			3.14159265
 
 typedef struct s_map	t_map;
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	float		x;
+	float		y;
 	int 	turn_direction;
 	int 	walk_direction;
+	int 	side_direction;
 	float   rotation_angle;
 	int 	move_speed;
 	float 	rotation_speed;

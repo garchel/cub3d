@@ -3,6 +3,11 @@
 
 # include "cub3d.h"
 
+
+#define WIN_HEIGHT	1100
+#define WIN_WIDTH	1100
+
+
 typedef struct s_image	t_image;
 typedef struct s_data	t_data;
 
