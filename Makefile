@@ -40,7 +40,7 @@ SRC_LIST		=	$(SETUP)actions.c\
 					$(SETUP)utils_start.c\
 					error.c	\
 					cub3d.c\
-					free_struct.c\
+					free.c\
 					$(SETUP)init_game.c\
 					$(RAYS)cast_rays.c\
 					$(CHECKERS)temp_map.c		\
