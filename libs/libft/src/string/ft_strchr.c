@@ -14,22 +14,10 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	char	char_c;
+	size_t		i;
 
-	char_c = (char) c;
-	i = 0;
-	if (ft_isascii(c) == 0)
-		return ((char *)s);
-	while (s[i])
-	{
-		if (s[i] == char_c)
-			return (((char *)(s + i)));
-		++i;
-	}
-	if (c == '\0')
-		return ((char *)(s + i));
-	if (s[i] == '\0')
-		return (0);
-	return ((char *) s);
+	i = ft_strlen(s);
+	if (s[i] == c)
+		return ((char *)s + i);
+	return (ft_memchr(s, c, i));
 }

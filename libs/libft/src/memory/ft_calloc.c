@@ -12,22 +12,19 @@
 
 #include "libft.h"
 
+#define INT_MAX 2147483647
+
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*ptr;
-	size_t	size_to_alloc;
+	size_t	*ptr;
+	size_t	total;
 
-	size_to_alloc = nmemb * size;
-	if (nmemb == 0 || size == 0)
-		return (malloc(0));
-	if (size_to_alloc / nmemb == size)
-	{
-		ptr = malloc(size_to_alloc);
-		if (ptr != NULL)
-		{
-			ft_bzero(ptr, size_to_alloc);
-			return (ptr);
-		}
-	}
-	return (0);
+	total = nmemb * size;
+	if (total > INT_MAX)
+		return (NULL);
+	ptr = malloc(total);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memset(ptr, 0, total);
+	return ((void *)ptr);
 }

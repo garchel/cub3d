@@ -12,28 +12,26 @@
 
 #include "libft.h"
 
+static int	ft_ignore(char c)
+{
+	if ((c >= 9 && c <= 13) || c == ' ')
+		return (1);
+	return (0);
+}
+
 int	ft_atoi(const char *nptr)
 {
-	int	signal;
-	int	i;
-	int	soma;
+	int		sign;
+	long	number;
 
-	soma = 0;
-	signal = 1;
-	i = 0;
-	while (nptr[i] == ' ' || nptr[i] == '\t' || nptr[i] == '\n'
-		|| nptr[i] == '\r' || nptr[i] == '\v' || nptr[i] == '\f')
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{	
-		if (nptr[i] == '-' )
-			signal = -1;
-		++i;
-	}
-	while (ft_isdigit(nptr[i]))
-	{
-		soma = soma * 10 + nptr[i] - '0';
-		++i;
-	}
-	return (soma * signal);
+	sign = 1;
+	number = 0;
+	while (ft_ignore(*nptr) == 1)
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+		if (*nptr++ == '-')
+			sign *= -1;
+	while (ft_isdigit(*nptr) == 1)
+		number = number * 10 + (*nptr++ - '0');
+	return (number * sign);
 }

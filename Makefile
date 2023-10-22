@@ -16,24 +16,40 @@ MLX_LINUX		= $(MLX_PATH)/libmlx_Linux.a
 MLX				= $(MLX_PATH)/libmlx.a
 
 #list path
-WINDOW_PATH		= window/
-RENDER_PATH		= render/
-MAP_PATH		= map/
+3D_PROJECTION	= 3d_projection/
+CHECKERS		= checkers/
+KEYS 			= keys/
+MLX_UTILS		= mlx_utils/
+MOVE_PLAYER		= move_player/
+RAYS 			= rays/
+SETUP 			= setup/
 
 #source codes
 SRC_DIR			=	./src/
-SRC_LIST		=	$(WINDOW_PATH)window.c	\
-					$(WINDOW_PATH)controls.c\
-					$(RENDER_PATH)draw.c	\
-					$(RENDER_PATH)player.c	\
-          			$(RENDER_PATH)bresenham.c	\
-					$(MAP_PATH)maps.c		\
-					$(MAP_PATH)textures.c		\
-					$(MAP_PATH)colors.c		\
-					$(MAP_PATH)create_map.c		\
-					$(MAP_PATH)linked_list.c		\
-					$(MAP_PATH)run_through_map.c		\
-					init_data.c cub3d.c error.c
+SRC_LIST		=	$(SETUP)actions.c\
+					$(MLX_UTILS)draw_utils.c\
+					$(MLX_UTILS)utils_mlx.c\
+					$(RAYS)rays_utils.c\
+					$(RAYS)rays.c\
+					$(RAYS)rays_facing.c\
+					$(3D_PROJECTION)projection3D.c	\
+					$(3D_PROJECTION)render_game.c\
+					$(3D_PROJECTION)draw_background.c\
+					$(KEYS)keys.c\
+					$(RAYS)utils_map.c\
+					$(SETUP)utils_start.c\
+					error.c	\
+					cub3d.c\
+					free_struct.c\
+					$(SETUP)init_game.c\
+					$(RAYS)cast_rays.c\
+					$(CHECKERS)temp_map.c		\
+					$(CHECKERS)get_files.c\
+					$(CHECKERS)create_map.c\
+					$(CHECKERS)run_throug_map.c\
+					$(CHECKERS)linked_list.c\
+					$(MOVE_PLAYER)move_player.c
+
 SRCS			= $(addprefix $(SRC_DIR),$(SRC_LIST))
 
 #objects
@@ -68,9 +84,13 @@ $(MLX):
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
-	@mkdir -p $(addprefix $(OBJS_DIR)/,$(WINDOW_PATH))
-	@mkdir -p $(addprefix $(OBJS_DIR)/,$(RENDER_PATH))
-	@mkdir -p $(addprefix $(OBJS_DIR)/,$(MAP_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(3D_PROJECTION))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(CHECKERS))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(KEYS))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(MLX_UTILS))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(MOVE_PLAYER))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(RAYS))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(SETUP))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
 	@cc $(CFLAGS) $(INCLUDES) -c $< -o $@
