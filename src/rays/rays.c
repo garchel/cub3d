@@ -7,13 +7,13 @@ void	get_ray_distance(t_cub3d *cub3d, t_aux_ray *horz, t_aux_ray *vert)
 				cub3d->player.x, cub3d->player.y, horz->wall_hit_x,
 				horz->wall_hit_y);
 	else
-		horz->hit_distance = INT_MAX;
+		horz->hit_distance = 2147483648;
 	if (vert->found_wall_hit == TRUE)
 		vert->hit_distance = distance_between_points(
 				cub3d->player.x, cub3d->player.y, vert->wall_hit_x,
 				vert->wall_hit_y);
 	else
-		vert->hit_distance = INT_MAX;
+		vert->hit_distance = 2147483648;
 }
 
 void	get_values_of_ray(t_ray *ray, t_utils_ray utils,
