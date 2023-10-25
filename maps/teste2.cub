@@ -7,8 +7,7 @@ EA ./textures/brick_block.xpm
 SO ./textures/wall1_e.xpm
 WE ./textures/blue_block.xpm
 
-111111
-10000
-11S001
-100001
-111111
+11111
+10011
+1S001
+11111

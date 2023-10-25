@@ -1,8 +1,8 @@
+
 #include "cub3d.h"
 
 static void	find_player_position(t_cub3d *cub3d);
 static void	save_orientation(t_cub3d *cub3d, char c);
-
 
 void	start_player(t_cub3d *cub3d)
 {
@@ -13,12 +13,13 @@ void	start_player(t_cub3d *cub3d)
 	cub3d->player.turn_direction = 0;
 	cub3d->player.walk_direction = 0;
 	cub3d->player.walk_speed = 10;
-	cub3d->player.turn_speed = 2 * (PI / 180); // PI/180 serve para converter angulos para radianos
+	cub3d->player.turn_speed = 2 * (PI / 180);
+	// PI/180 serve para converter angulos para radianos
 }
 
 static void	find_player_position(t_cub3d *cub3d)
 {
-	int x;
+	int	x;
 	int	y;
 
 	x = 0;
@@ -33,7 +34,8 @@ static void	find_player_position(t_cub3d *cub3d)
 				cub3d->player.x = (y * TILE) + (TILE / 2);
 				cub3d->player.y = (x * TILE) + (TILE / 2);
 				save_orientation(cub3d, cub3d->map[x][y]);
-				cub3d->map[x][y] = '0'; //retira a letra indicando o posicionamento
+				//retira a letra indicando o posicionamento
+				cub3d->map[x][y] = '0';
 				break ;
 			}
 			y++;

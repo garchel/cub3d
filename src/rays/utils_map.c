@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 int	is_inside_map(float x, float y, t_cub3d *cub3d)

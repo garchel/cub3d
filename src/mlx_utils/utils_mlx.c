@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 void	sprites(t_data *img, void *mlx, char *path)

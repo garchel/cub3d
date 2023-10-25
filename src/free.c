@@ -24,5 +24,3 @@ void	ft_free_ptr(void **ptr)
 		*ptr = NULL;
 	}
 }
-
-

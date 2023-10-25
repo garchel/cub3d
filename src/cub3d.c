@@ -4,7 +4,7 @@ int	main(int argc, char **argv)
 {
 	t_cub3d	cub3d;
 
-	if(argc != 2)
+	if (argc != 2)
 		error_message(ARG_ERR);
 	ft_bzero(&cub3d, sizeof(t_cub3d));
 	if (check_map(&cub3d, argv) == FALSE)

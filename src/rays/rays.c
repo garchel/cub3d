@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 void	get_ray_distance(t_cub3d *cub3d, t_aux_ray *horz, t_aux_ray *vert)
@@ -47,4 +48,3 @@ float	normalize_angle(float angle)
 		angle = TWO_PI + angle;
 	return (angle);
 }
-

@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 int	is_ray_facing_down(float angle)

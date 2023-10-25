@@ -40,4 +40,3 @@ void	get_values_projection(t_cub3d *cub3d, t_projection *var)
 	if (var->wall_bottom_pixel < 0)
 		var->wall_bottom_pixel = 0;
 }
-

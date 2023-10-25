@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-void error_message(char *msg)
+void	error_message(char *msg)
 {
-    printf("ERROR:");
+	printf("ERROR:");
 	perror(msg);
 	exit(1);
 }

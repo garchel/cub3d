@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 void	cast_ray(float ray_angle, int id, t_cub3d *cub3d);
@@ -7,10 +8,11 @@ void	cast_all_rays(t_cub3d *cub3d)
 {
 	float	ray_angle;
 	int		i;
-	double  rad_increment;
+	double	rad_increment;
 
 	rad_increment = FOV_ANGLE / NUM_RAYS;
-	ray_angle = cub3d->player.rotation_angle - (FOV_ANGLE / 2); //primeiro raio da esquerda para a direita
+	ray_angle = cub3d->player.rotation_angle - \
+		(FOV_ANGLE / 2); //primeiro raio da esquerda para a direita
 	i = 0;
 	while (i < NUM_RAYS) //incrementa até chegar ao ultimo raio a direita
 	{

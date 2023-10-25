@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 void	ft_mlx_pixel_put(t_data *img_data, int x, int y, int color)

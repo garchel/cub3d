@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 int	action_loop(t_cub3d *cub3d)

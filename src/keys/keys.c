@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 int	key_release(int key, t_cub3d *cub3d)
