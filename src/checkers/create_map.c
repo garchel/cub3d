@@ -3,25 +3,25 @@
 
 char	**linked_to_int(t_list_map *head, int size);
 
-void	print_map_create(int **matrix) //temporário. apenas para debug
-{
-	int	i;
-	int	j;
+// void	print_map_create(int **matrix) //temporário. apenas para debug
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	while (i < 18)
-	{
-		j = 0;
-		while (matrix[i][j] != -1)
-		{
-			printf("%d", matrix[i][j]);
-			++j;
-		}
-		printf("\n");
-		++i;
-	}
-}
+// 	i = 0;
+// 	j = 0;
+// 	while (i < 18)
+// 	{
+// 		j = 0;
+// 		while (matrix[i][j] != -1)
+// 		{
+// 			printf("%d", matrix[i][j]);
+// 			++j;
+// 		}
+// 		printf("\n");
+// 		++i;
+// 	}
+// }
 
 // Recebe uma lista encadeada de strings e um tamanho e 
 //retorna uma matriz de inteiros.

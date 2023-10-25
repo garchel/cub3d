@@ -46,8 +46,9 @@ SRC_LIST		=	$(SETUP)actions.c\
 					$(CHECKERS)temp_map.c		\
 					$(CHECKERS)get_files.c\
 					$(CHECKERS)create_map.c\
-					$(CHECKERS)run_throug_map.c\
+					$(CHECKERS)check_walls.c\
 					$(CHECKERS)linked_list.c\
+					$(CHECKERS)search_directions.c\
 					$(MOVE_PLAYER)move_player.c
 
 SRCS			= $(addprefix $(SRC_DIR),$(SRC_LIST))

@@ -26,6 +26,11 @@ void			normalize_matrix(char **matrix);
 void			error_message(char *msg);
 void			add_on_tail(t_list_map *list, char *line);
 t_list_map		*create_list();
+int				process_zeros(t_list_map head, int i, int j, t_scale scale);
+int				search_zero_right(t_list_map head, int i, int j, t_scale scale);
+int				search_zero_down(t_list_map head, int i, int j, t_scale scale);
+int				search_zero_left(t_list_map head, int i, int j, t_scale scale);
+int				search_zero_up(t_list_map head, int i, int j, t_scale scale);
 
 //free
 void			free_mlx_all(t_cub3d *cub);
