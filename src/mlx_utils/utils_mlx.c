@@ -1,5 +1,11 @@
-
 #include "cub3d.h"
+
+void	build_main_img(t_cub3D *cub3D)
+{
+	cub3D->img.img = mlx_new_image(cub3D->s_mlx.mlx, WIDTH, HEIGHT);
+	cub3D->img.addr = mlx_get_data_addr(cub3D->img.img, &cub3D->img.bpp,
+			&cub3D->img.l_len, &cub3D->img.endian);
+}
 
 void	sprites(t_data *img, void *mlx, char *path)
 {
@@ -9,9 +15,18 @@ void	sprites(t_data *img, void *mlx, char *path)
 			&img->l_len, &img->endian);
 }
 
-void	build_main_img(t_cub3d *cub)
+void	ft_mlx_pixel_put(t_data *img_data, int x, int y, int color)
 {
-	cub->img.img = mlx_new_image(cub->s_mlx.mlx, WIDTH, HEIGHT);
-	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bpp,
-			&cub->img.l_len, &cub->img.endian);
+	char	*dst;
+
+	dst = img_data->addr + (y * img_data->l_len + x * (img_data->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+unsigned int	get_color(t_data *data, int x, int y)
+{
+	char	*color;
+
+	color = data->addr + (y * data->l_len + x * (data->bpp / 8));
+	return (*(unsigned int *)color);
 }

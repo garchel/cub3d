@@ -23,38 +23,47 @@ MLX_UTILS		= mlx_utils/
 MOVE_PLAYER		= move_player/
 RAYS 			= rays/
 SETUP 			= setup/
+UTILS 			= utils/
 
 #source codes
 SRC_DIR			=	./src/
-SRC_LIST		=	$(SETUP)actions.c\
-					$(MLX_UTILS)draw_utils.c\
-					$(MLX_UTILS)utils_mlx.c\
-					$(RAYS)rays_utils.c\
-					$(RAYS)rays.c\
+SRC_LIST		=	$(MLX_UTILS)utils_mlx.c\
+					$(RAYS)cast_all_rays.c\
+					$(RAYS)cast_ray.c\
 					$(RAYS)rays_facing.c\
-					$(3D_PROJECTION)projection3D.c	\
-					$(3D_PROJECTION)render_game.c\
+					$(RAYS)rays_way.c\
 					$(3D_PROJECTION)draw_background.c\
+					$(3D_PROJECTION)draw_game.c\
+					$(3D_PROJECTION)generate3D_projection.c\
+					$(3D_PROJECTION)get_texture_offset.c\
+					$(3D_PROJECTION)get_values_projection.c\
 					$(KEYS)keys.c\
-					$(RAYS)utils_map.c\
-					$(SETUP)utils_start.c\
-					error.c	\
-					cub3d.c\
-					free.c\
-					$(SETUP)init_game.c\
-					$(RAYS)cast_rays.c\
-					$(CHECKERS)temp_map.c		\
-					$(CHECKERS)get_files.c\
-					$(CHECKERS)create_map.c\
+					$(SETUP)setup.c\
+					$(SETUP)start_player.c\
+					$(SETUP)start_textures.c\
+					$(CHECKERS)check_map.c\
+					$(CHECKERS)check_utils.c\
 					$(CHECKERS)check_walls.c\
+					$(CHECKERS)colors.c\
+					$(CHECKERS)create_map.c\
+					$(CHECKERS)get_elements.c\
+					$(CHECKERS)get_files.c\
 					$(CHECKERS)linked_list.c\
+					$(CHECKERS)map_textures.c\
 					$(CHECKERS)search_directions.c\
-					$(MOVE_PLAYER)move_player.c
+					$(MOVE_PLAYER)move_player.c\
+					$(UTILS)error.c	\
+					$(UTILS)free_struct.c\
+					$(UTILS)free.c\
+					$(UTILS)utils_map.c\
+					init_game.c\
+					cub3d.c\
+					actions.c\
 
 SRCS			= $(addprefix $(SRC_DIR),$(SRC_LIST))
 
 #objects
-OBJS_DIR		= ./objects/
+OBJS_DIR		= ./.objects/
 OBJS			= $(addprefix $(OBJS_DIR),$(SRC_LIST:%.c=%.o))
 
 #colors
@@ -92,6 +101,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(MOVE_PLAYER))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(RAYS))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(SETUP))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(UTILS))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
 	@cc $(CFLAGS) $(INCLUDES) -c $< -o $@

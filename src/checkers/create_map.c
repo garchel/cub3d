@@ -1,82 +1,83 @@
-
 #include "cub3d.h"
 
-char	**linked_to_int(t_list_map *head, int size);
+int	check_map_chars(t_list_map head,  t_scale scale);
 
-// void	print_map_create(int **matrix) //temporário. apenas para debug
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (i < 18)
-// 	{
-// 		j = 0;
-// 		while (matrix[i][j] != -1)
-// 		{
-// 			printf("%d", matrix[i][j]);
-// 			++j;
-// 		}
-// 		printf("\n");
-// 		++i;
-// 	}
-// }
-
-// Recebe uma lista encadeada de strings e um tamanho e 
-//retorna uma matriz de inteiros.
-char	**linked_to_int(t_list_map *head, int size)
+char	**create_map(int fd, char *current_line)
 {
-	char	**map;
-	int		i;
-	int		j;
+	t_list_map	*head;
+	int			size;
+	t_scale		scale;
 
-	map = malloc(sizeof(int *) * size + 1);
-	i = 0;
-	while (head->begin)
+	head = create_list();
+	current_line = next_line(fd);
+	size = 0;
+	while (current_line[0] != 0 && current_line[0] != '\n')
 	{
-		if (size == i)
-			head->begin->size++;
-		map[i] = malloc(sizeof(int) * (head->begin->size));
-		j = 0;
-		while (j < head->begin->size)
-		{
-			if (head->begin->line[j] == ' ')
-				head->begin->line[j] = '0';
-			map[i][j] = (head->begin->line[j]);
-			++j;
-		}
-		map[i][--j] = -1;
-		head->begin = head->begin->next;
-		++i;
+		add_on_tail(head, current_line);
+		current_line = get_next_line(fd);
+		if (current_line == NULL || current_line[0] == '\n')
+			break ;
+		++size;
 	}
-	map[size + 1] = NULL;
-	return (map);
+	head->map = linked_to_int(head, size);
+	scale = get_scale(head->map);
+	if ((check_map_chars(*head, scale) != 1) || (check_walls(*head, scale) != 1))
+		error_message(PARSE_MAP);
+	normalize_matrix(head->map);
+	return (head->map);
 }
 
-// Armazena a altura e largura da matriz (mapa) em uma struct.
-t_scale	get_scale(char **map)
+void	normalize_matrix(char **matrix)
 {
-	t_scale	scale;
-	int		i;
-	int		j;
-	int		greater;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	greater = 1;
-	while (map[i])
+	while (matrix[i] != NULL)
 	{
 		j = 0;
-		while (map[i][j])
+		while (matrix[i][j])
+		{
+			if (matrix[i][j] == '3')
+				matrix[i][j] = '0';
+			if (matrix[i][j] == -1)
+			{
+				matrix[i][j] = '\0';
+			}
 			++j;
-		if (j > greater)
-			greater = j;
+		}
 		++i;
 	}
-	scale.height = i;
-	scale.width = greater - 1;
-	return (scale);
+}
+
+
+int	check_map_chars(t_list_map head,  t_scale scale)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i <= scale.height - 1 && head.map[i] != NULL)
+	{
+		j = 0;
+		while (j <= scale.width - 2 && head.map[i][j] != -1)
+		{
+			if (head.map[i][j] == '1' ||
+				head.map[i][j] == '0' ||
+				head.map[i][j] == 'N' ||
+				head.map[i][j] == 'S' ||
+				head.map[i][j] == 'E' ||
+				head.map[i][j] == 'W')
+				{
+					++j;
+				}
+			else
+				return (0); // Caractere inválido encontrado
+		}
+		++i;
+	}
+	return (1);
 }
 
 t_pos	return_pos(int **matrix, t_pos pos)
@@ -128,37 +129,4 @@ t_pos	first_empty_block(int **matrix, int size)
 	pos.y = 0;
 	pos.x = 0;
 	return (pos);
-}
-
-char	**create_map(int fd, char *current_line)
-{
-	t_list_map	*head;
-	int			size;
-	t_scale		scale;
-
-	head = create_list();
-	current_line = next_line(fd);
-	size = 0;
-	//guardas todas a informações em uma lista encadeada
-	while (current_line[0] != 0 && current_line[0] != '\n')
-	{
-		add_on_tail(head, current_line);
-		current_line = get_next_line(fd);
-		if (current_line == NULL || current_line[0] == '\n')
-			break ;
-		++size;
-	}
-	//passa todas a informações para uma matriz
-	head->map = linked_to_int(head, size);
-	scale = get_scale(head->map);
-	//verifica se todos os mapas estão cercados por paredes, se 
-	//não existe nenhum numero inválido e a posição inicial do jogador
-	if (check_walls(*head, scale) != 1)
-	{
-		error_message(PARSE_MAP);
-	}
-	//adiciona um '-1' em todas a linha para 
-	//identificar o final do mapa(para os mapas irregulares)
-	normalize_matrix(head->map);
-	return (head->map);
 }

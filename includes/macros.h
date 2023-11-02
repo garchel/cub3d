@@ -1,6 +1,6 @@
-#ifndef MACROS_H
+#ifndef DEFINES_H
 
-# define MACROS_H
+# define DEFINES_H
 # include <math.h>
 
 # define TRUE 0
@@ -36,6 +36,8 @@
 # define TWO_PI 6.28318530
 # define NUM_RAYS WIDTH
 
-#define FOV_ANGLE (60 * (double) (PI / 180))
+// # define UNUSED __attribute__((unused))
+
+# define FOV_ANGLE (60 * (double) (PI / 180))
 
 #endif

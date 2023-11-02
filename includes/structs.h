@@ -145,19 +145,30 @@ typedef struct s_map_info
 {
 	int	height;
 	int	width;
-}		t_map_info; 
-// t_map_scale
+}		t_map_info;
+
+typedef struct s_rgb
+{
+	int		red;
+	int		green;
+	int		blue;
+	int		status;
+}		t_rgb;
 
 typedef struct s_collor
 {
+	t_rgb	cell_rgb;
+	t_rgb	floor_rgb;
 	int		cell;
 	int		floor;
+	int		status;
 }		t_collor;
 
-typedef struct s_cub3d
+typedef struct s_cub3D
 {
 	t_player	player;
 	t_ray		rays[NUM_RAYS];
+	char		***texture_path;
 	char		***colors;
 	char		**map;
 	char		**content_map;
@@ -169,15 +180,7 @@ typedef struct s_cub3d
 	t_map_info	map_info;
 	t_file_info file_info;
 	double		dist_proj_plane;
-}			t_cub3d;
-
-typedef struct s_temp_texture
-{
-	char *no;
-	char *so;
-	char *we;
-	char *ea;
-} t_temp_texture;
+}			t_cub3D;
 
 typedef struct s_node_map
 {
@@ -198,5 +201,7 @@ typedef struct s_scale
 	int width;
 	int height;
 } t_scale;
+
+
 
 #endif

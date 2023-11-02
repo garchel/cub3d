@@ -39,7 +39,7 @@ char	*bild_line(char *str)
 	while (str[i] && str[i] != '\n')
 		++i;
 	++i;
-	new_str = malloc((i + 1) * sizeof(char));
+	new_str = ft_calloc((i + 1) , sizeof(char));
 	if (!new_str)
 		return (NULL);
 	i = 0;

@@ -12,6 +12,7 @@
 
 #include "libft.h"
 
+
 static int	count_c(char const *s, char c)
 {
 	int	i;

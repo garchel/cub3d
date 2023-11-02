@@ -1,7 +1,6 @@
-
 #include "cub3d.h"
 
-int	key_release(int key, t_cub3d *cub3d)
+int	key_release(int key, t_cub3D *cub3d)
 {
 	if (key == RIGHT)
 		cub3d->player.side_direction = 0;
@@ -18,21 +17,21 @@ int	key_release(int key, t_cub3d *cub3d)
 	return (0);
 }
 
-int	action(int keycode, t_cub3d *cub3d)
+int	action(int keycode, t_cub3D *cub3D)
 {
 	if (keycode == ESC)
-		close_win(cub3d);
+		close_win(cub3D);
 	if (keycode == RIGHT)
-		cub3d->player.side_direction = -1;
+		cub3D->player.side_direction = -1;
 	if (keycode == ARROW_RIGHT)
-		cub3d->player.turn_direction = +1;
+		cub3D->player.turn_direction = +1;
 	if (keycode == LEFT)
-		cub3d->player.side_direction = +1;
+		cub3D->player.side_direction = +1;
 	if (keycode == ARROW_LEFT)
-		cub3d->player.turn_direction = -1;
+		cub3D->player.turn_direction = -1;
 	if (keycode == TOP)
-		cub3d->player.walk_direction = +1;
+		cub3D->player.walk_direction = +1;
 	if (keycode == DOWN)
-		cub3d->player.walk_direction = -1;
+		cub3D->player.walk_direction = -1;
 	return (TRUE);
 }
