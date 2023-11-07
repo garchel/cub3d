@@ -13,6 +13,8 @@
 # include	<structs.h>
 # include	<limits.h>
 
+#include <string.h>
+
 //3d_projection
 void			generate3d_projection(t_cub3D *cub3D);
 void			get_values_projection(t_cub3D *cub3D, t_projection *var);
@@ -26,8 +28,8 @@ int				search_zero_left(t_list_map head, int i, int j, t_scale scale);
 int				search_zero_up(t_list_map head, int i, int j, t_scale scale);
 t_list_map		*create_list(void);
 char			*next_line(int fd);
-int				get_elements(char *current_line, char *ident, \
-t_file_info 	*file_info, int fd);
+int				get_elements(t_list_map *list, char *ident, \
+t_file_info 	*file_info);
 t_list_map		*create_list(void);
 int				get_files(t_cub3D *cub3D, char **argv);
 t_scale			get_scale(char **map);
@@ -35,9 +37,9 @@ void			add_on_tail(t_list_map *list, char *line);
 char			**linked_to_int(t_list_map *head, int size);
 int				check_walls(t_list_map head, t_scale scale);
 void			normalize_matrix(char **matrix);
-int				map_textures(int fd, t_texture_path *textures, char *first_line);
-int				colors(int fd, t_colors *colors, char *current_line);
-char			**create_map(int fd, char *current_line);
+int				map_textures(t_texture_path *textures, t_list_map *head);
+int				colors(t_colors *colors, t_list_map *head);
+char			**create_map(t_list_map *list, int n_lines);
 int				process_zeros(t_list_map head, int i, int j, t_scale scale);
 
 //keys

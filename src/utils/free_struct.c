@@ -21,11 +21,4 @@ void	free_mlx_all(t_cub3D *cub3D)
 	ft_free_ptr(&cub3D->s_mlx.mlx);
 }
 
-void	free_struct(t_cub3D *cub3D)
-{
-	ft_free_triple(cub3D->texture_path);
-	ft_free_triple(cub3D->colors);
-	ft_free_split(cub3D->content_map);
-}
-
 

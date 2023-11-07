@@ -23,6 +23,7 @@ int	check_walls(t_list_map head, t_scale scale)
 		}
 		++i;
 	}
+
 	return (1);
 }
 

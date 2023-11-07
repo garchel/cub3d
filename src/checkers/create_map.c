@@ -2,29 +2,21 @@
 
 int	check_map_chars(t_list_map head,  t_scale scale);
 
-char	**create_map(int fd, char *current_line)
+char	**create_map(t_list_map *list, int n_lines)
 {
-	t_list_map	*head;
-	int			size;
 	t_scale		scale;
+	t_node_map *init;
 
-	head = create_list();
-	current_line = next_line(fd);
-	size = 0;
-	while (current_line[0] != 0 && current_line[0] != '\n')
-	{
-		add_on_tail(head, current_line);
-		current_line = get_next_line(fd);
-		if (current_line == NULL || current_line[0] == '\n')
-			break ;
-		++size;
-	}
-	head->map = linked_to_int(head, size);
-	scale = get_scale(head->map);
-	if ((check_map_chars(*head, scale) != 1) || (check_walls(*head, scale) != 1))
+	init = list->begin;
+	list->map = linked_to_int(list, n_lines - 6);
+	list->begin = init;
+	scale = get_scale(list->map);
+	if ((check_map_chars(*list, scale) != 1) || (check_walls(*list, scale) != 1))
 		error_message(PARSE_MAP);
-	normalize_matrix(head->map);
-	return (head->map);
+	normalize_matrix(list->map);
+
+	list->map[scale.height - 1][scale.width - 1] = '1';
+	return list->map;
 }
 
 void	normalize_matrix(char **matrix)
@@ -34,7 +26,7 @@ void	normalize_matrix(char **matrix)
 
 	i = 0;
 	j = 0;
-	while (matrix[i] != NULL)
+	while (matrix[i])
 	{
 		j = 0;
 		while (matrix[i][j])

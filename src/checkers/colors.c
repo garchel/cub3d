@@ -1,29 +1,27 @@
 #include "cub3d.h"
 
-unsigned int	get_colors(int fd, char ***floor, \
-	char ***ceiling, char *current_line);
+unsigned int	get_colors(char ***floor, \
+	char ***ceiling, t_list_map *head);
 unsigned int	rgb_to_uint(char ***rgb);
 int	have_letters(char *color);
 
-int	colors(int fd, t_colors *colors, char *current_line)
+int	colors(t_colors *colors, t_list_map *head)
 {
-	char	**floor;
-	char	**ceiling;
+    char **floor = NULL; 
+    char **ceiling = NULL; 
 
-	if (!get_colors(fd, &floor, &ceiling, current_line))
+	// floor = calloc(4, sizeof(char*));
+	// ceiling = calloc(4, sizeof(char*));
+	if (!get_colors(&floor, &ceiling, head))
 		return (0);
 	colors->ceiling = rgb_to_uint(&ceiling);
 	if (colors->ceiling == 0)
-	{
 		error_message(CEILING_ERR);
-		return (0);
-	}
 	colors->floor = rgb_to_uint(&floor);
 	if (colors->floor == 0)
-	{
 		error_message(FLOOR_ERR);
-		return (0);
-	}
+	ft_free_split(floor);
+	ft_free_split(ceiling);
 	return (1);
 }
 
@@ -40,18 +38,6 @@ int	have_letters(char *color)
 		++i;
 	}
 	return (0);
-}
-
-int	set_info(char letter, char *colors, \
-	char ****ceiling, char ****floor)
-{
-	if (letter == 'f' || letter == 'F')
-		(**floor) = ft_split(colors, ',');
-	else if (letter == 'c' || letter == 'C')
-		(**ceiling) = ft_split(colors, ',');
-	else
-		return (0);
-	return (1);
 }
 
 unsigned int	rgb_to_uint(char ***rgb)
@@ -74,31 +60,42 @@ unsigned int	rgb_to_uint(char ***rgb)
 	return ((red << 16) + (green << 8) + blue);
 }
 
-unsigned int	get_colors(int fd, char ***floor, \
-	char ***ceiling, char *current_line)
+unsigned int	get_colors(char ***floor, \
+	char ***ceiling, t_list_map *head)
 {
-	char	**line_splitted_space;
-	char	*colors;
-	int		i;
-	int		j;
-	char	letter;
+	char *info_floor;
+	char *info_ceiling;
+	int i = 1;
+	int j = 0;
 
-	j = 0;
-	while (j < 2)
+	info_floor = ft_calloc(head->begin->size, sizeof(char));
+	while(head->begin->line[i])
 	{
-		colors = "\0";
-		while (current_line[0] == '\n')
-			current_line = get_next_line(fd);
-		line_splitted_space = ft_split(current_line, ' ');
-		letter = line_splitted_space[0][0];
-		i = 0;
-		while (line_splitted_space[++i])
-			colors = ft_strjoin(colors, line_splitted_space[i]);
-		set_info(letter, colors, &floor, &ceiling);
-		current_line = get_next_line(fd);
-		free(colors);
-		++j;
+		if(head->begin->line[i] != ' ')
+		{
+			info_floor[j] = head->begin->line[i];
+			++j;
+		}
+		++i;
 	}
-	return (1);
+	(*floor) = ft_split(info_floor, ',');
+	i = 1;
+	j = 0;
+	info_ceiling = ft_calloc(head->begin->size, sizeof(char));
+	head->begin = head->begin->next;
+	while(head->begin->line[i])
+	{
+		if(head->begin->line[i] != ' ')
+		{
+			info_ceiling[j] = head->begin->line[i];
+			++j;
+		}
+		++i;
+	}
+	(*ceiling) = ft_split(info_ceiling, ',');
+	head->begin = head->begin->next;
+	free(info_ceiling);
+	free(info_floor);
+	return 1;
 }
 

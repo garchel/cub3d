@@ -5,7 +5,7 @@ t_list_map	*create_list(void)
 {
 	t_list_map	*list;
 
-	list = malloc(1 * sizeof(list));
+	list = calloc(2 , sizeof(t_list_map));
 	list->begin = NULL;
 	list->end = NULL;
 	return (list);
@@ -15,7 +15,7 @@ t_node_map	*create_node(char *line)
 {
 	t_node_map	*node;
 
-	node = malloc(1 * sizeof(node));
+	node = calloc(2 , sizeof(t_node_map));
 	node->line = line;
 	node->size = ft_strlen(line);
 	node->next = NULL;
@@ -44,14 +44,16 @@ char	**linked_to_int(t_list_map *head, int size)
 	char	**map;
 	int		i;
 	int		j;
+    t_node_map *init;
 
-	map = malloc(sizeof(int *) * size + 1);
+    init = head->begin;
+
+	map = ft_calloc(size + 1 , sizeof(char*));
 	i = 0;
 	while (head->begin)
 	{
-		if (size == i)
-			head->begin->size++;
-		map[i] = malloc(sizeof(int) * (head->begin->size));
+
+		map[i] = ft_calloc(strlen(head->begin->line) + 2, sizeof(char));
 		j = 0;
 		while (j < head->begin->size)
 		{
@@ -64,6 +66,6 @@ char	**linked_to_int(t_list_map *head, int size)
 		head->begin = head->begin->next;
 		++i;
 	}
-	map[size + 1] = NULL;
+    head->begin = init;
 	return (map);
 }
