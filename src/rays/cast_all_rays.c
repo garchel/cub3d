@@ -17,5 +17,3 @@ void	cast_all_rays(t_cub3D *cub3D)
 		++i;
 	}
 }
-
-

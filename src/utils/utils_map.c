@@ -12,7 +12,6 @@ int	map_has_wall_at(t_cub3D *cub3d, float x, float y)
 	return (cub3d->map[map_grid_indexy][map_grid_indexx] != '0');
 }
 
-
 int	get_lenght(t_cub3D *cub3d, float line)
 {
 	if ((int)floor(line / TILE) < 0 || (int)floor(line / TILE)

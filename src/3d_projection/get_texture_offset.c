@@ -12,7 +12,6 @@ void	get_texture_offset(t_cub3D *cub3D, t_projection *var)
 	var->tex_num = cub3D->rays[var->x].wall_hit_cotent;
 }
 
-
 void	check_inverse_offset_x(t_ray ray, int *texture_offset_x)
 {
 	if (ray.was_hit_vertical == FALSE

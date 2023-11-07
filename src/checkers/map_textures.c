@@ -2,8 +2,8 @@
 
 void	check_last_char(t_texture_path **texture);
 char	**get_file_path(t_list_map *head);
-int	set_places(char **list, t_texture_path **textures);
-int	validate_textures_file_path(t_texture_path **textures);
+int		set_places(char **list, t_texture_path **textures);
+int		validate_textures_file_path(t_texture_path **textures);
 
 int	map_textures(t_texture_path *textures, t_list_map *head)
 {
@@ -34,7 +34,7 @@ char	**get_file_path(t_list_map *head)
 {
 	char	**list;
 
-	list = calloc(5 , sizeof(char *));
+	list = calloc(5, sizeof(char *));
 	list[0] = head->begin->line;
 		head->begin = head->begin->next;
 	list[1] = head->begin->line;

@@ -3,13 +3,15 @@
 unsigned int	get_colors(char ***floor, \
 	char ***ceiling, t_list_map *head);
 unsigned int	rgb_to_uint(char ***rgb);
-int	have_letters(char *color);
+int				have_letters(char *color);
 
 int	colors(t_colors *colors, t_list_map *head)
 {
-    char **floor = NULL; 
-    char **ceiling = NULL; 
+	char	**floor;
+	char	**ceiling;
 
+	floor = NULL;
+	ceiling = NULL;
 	// floor = calloc(4, sizeof(char*));
 	// ceiling = calloc(4, sizeof(char*));
 	if (!get_colors(&floor, &ceiling, head))
@@ -24,7 +26,6 @@ int	colors(t_colors *colors, t_list_map *head)
 	ft_free_split(ceiling);
 	return (1);
 }
-
 
 int	have_letters(char *color)
 {
@@ -63,15 +64,17 @@ unsigned int	rgb_to_uint(char ***rgb)
 unsigned int	get_colors(char ***floor, \
 	char ***ceiling, t_list_map *head)
 {
-	char *info_floor;
-	char *info_ceiling;
-	int i = 1;
-	int j = 0;
+	char	*info_floor;
+	char	*info_ceiling;
+	int		i;
+	int		j;
 
+	i = 1;
+	j = 0;
 	info_floor = ft_calloc(head->begin->size, sizeof(char));
-	while(head->begin->line[i])
+	while (head->begin->line[i])
 	{
-		if(head->begin->line[i] != ' ')
+		if (head->begin->line[i] != ' ')
 		{
 			info_floor[j] = head->begin->line[i];
 			++j;
@@ -83,9 +86,9 @@ unsigned int	get_colors(char ***floor, \
 	j = 0;
 	info_ceiling = ft_calloc(head->begin->size, sizeof(char));
 	head->begin = head->begin->next;
-	while(head->begin->line[i])
+	while (head->begin->line[i])
 	{
-		if(head->begin->line[i] != ' ')
+		if (head->begin->line[i] != ' ')
 		{
 			info_ceiling[j] = head->begin->line[i];
 			++j;
@@ -96,6 +99,5 @@ unsigned int	get_colors(char ***floor, \
 	head->begin = head->begin->next;
 	free(info_ceiling);
 	free(info_floor);
-	return 1;
+	return (1);
 }
-

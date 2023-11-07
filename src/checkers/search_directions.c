@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 int	is_valid_position(int i, int j, t_scale scale)
@@ -12,9 +11,9 @@ int	search_zero_right(t_list_map head, int i, int j, t_scale scale)
 		return (0);
 	if (is_valid_position(i, j + 1, scale))
 	{
-		if (head.map[i][j + 1] == '0') // Se for um 0 e não for a ultima coluna
+		if (head.map[i][j + 1] == '0')
 		{
-			head.map[i][j + 1] = '3'; // Marca como visitado
+			head.map[i][j + 1] = '3';
 			return (process_zeros(head, i, j + 1, scale));
 		}
 	}

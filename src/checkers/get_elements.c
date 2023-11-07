@@ -22,7 +22,6 @@ int	get_elements(t_list_map *list, char *ident, \
 				error_message(COLOR_ERR);
 			ident = "NO";
 			// list->begin = list->begin->next;
-
 		}
 		else
 			error_message(ID_FAIL);
@@ -30,5 +29,3 @@ int	get_elements(t_list_map *list, char *ident, \
 	}
 	return (1);
 }
-
-

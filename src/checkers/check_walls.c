@@ -23,7 +23,6 @@ int	check_walls(t_list_map head, t_scale scale)
 		}
 		++i;
 	}
-
 	return (1);
 }
 
@@ -54,4 +53,3 @@ int	find_adjacent_zero(t_list_map head, int i, int j, t_scale scale)
 	else
 		return (0);
 }
-

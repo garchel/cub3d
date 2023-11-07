@@ -2,8 +2,6 @@
 
 // int	check_arg(char **argv);
 
-
-
 // int	get_files(t_cub3D *cub3D, char **argv)
 // {
 // 	int		fd;
@@ -22,7 +20,6 @@
 // 	// close(fd);
 // 	return (status);
 // }
-
 
 // int	check_arg(char **argv)
 // {

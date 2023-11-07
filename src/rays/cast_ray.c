@@ -2,10 +2,9 @@
 
 float	normalize_angle(float angle);
 void	get_ray_distance(t_cub3D *cub3D, t_aux_ray *horz, t_aux_ray *vert);
-void	get_values_of_ray(t_ray *ray, t_utils_ray utils,
+void	get_values_of_ray(t_ray *ray, t_utils_ray utils, \
 	t_aux_ray horz, t_aux_ray vert);
 float	distance_between_points(float x1, float y1, float x2, float y2);
-
 
 void	cast_ray(float ray_angle, int id, t_cub3D *cub3D)
 {
@@ -24,7 +23,6 @@ void	cast_ray(float ray_angle, int id, t_cub3D *cub3D)
 	cub3D->rays[id].ray_angle = ray_angle;
 }
 
-
 float	normalize_angle(float angle)
 {
 	angle = remainder(angle, TWO_PI);
@@ -40,13 +38,13 @@ void	get_ray_distance(t_cub3D *cub3D, t_aux_ray *horz, t_aux_ray *vert)
 				cub3D->player.x, cub3D->player.y, horz->wall_hit_x,
 				horz->wall_hit_y);
 	else
-		horz->hit_distance = INT_MAX;
+		horz->hit_distance = 2147483648;
 	if (vert->found_wall_hit == TRUE)
 		vert->hit_distance = distance_between_points(
 				cub3D->player.x, cub3D->player.y, vert->wall_hit_x,
 				vert->wall_hit_y);
 	else
-		vert->hit_distance = INT_MAX;
+		vert->hit_distance = 2147483648;
 }
 
 void	get_values_of_ray(t_ray *ray, t_utils_ray utils,

@@ -1,8 +1,10 @@
 #include <cub3d.h>
 
-int	is_inside_map(float x, float y, t_cub3D *cub3d);
-void	find_horz_intersection(t_aux_ray *aux, t_utils_ray *utils, t_cub3D *cub);
-void	find_vert_intersection(t_aux_ray *aux, t_utils_ray *utils, t_cub3D *cub);
+int		is_inside_map(float x, float y, t_cub3D *cub3d);
+void	find_horz_intersection(t_aux_ray *aux, t_utils_ray *utils, \
+	t_cub3D *cub);
+void	find_vert_intersection(t_aux_ray *aux, t_utils_ray *utils, \
+	t_cub3D *cub);
 
 t_aux_ray	ray_horizontal(t_cub3D *cub, t_utils_ray *utils, float angle)
 {

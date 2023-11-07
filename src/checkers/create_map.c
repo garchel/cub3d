@@ -1,22 +1,22 @@
 #include "cub3d.h"
 
-int	check_map_chars(t_list_map head,  t_scale scale);
+int	check_map_chars(t_list_map head, t_scale scale);
 
 char	**create_map(t_list_map *list, int n_lines)
 {
 	t_scale		scale;
-	t_node_map *init;
+	t_node_map	*init;
 
 	init = list->begin;
 	list->map = linked_to_int(list, n_lines - 6);
 	list->begin = init;
 	scale = get_scale(list->map);
-	if ((check_map_chars(*list, scale) != 1) || (check_walls(*list, scale) != 1))
+	if ((check_map_chars(*list, scale) != 1) || \
+		(check_walls(*list, scale) != 1))
 		error_message(PARSE_MAP);
 	normalize_matrix(list->map);
-
 	list->map[scale.height - 1][scale.width - 1] = '1';
-	return list->map;
+	return (list->map);
 }
 
 void	normalize_matrix(char **matrix)
@@ -43,8 +43,7 @@ void	normalize_matrix(char **matrix)
 	}
 }
 
-
-int	check_map_chars(t_list_map head,  t_scale scale)
+int	check_map_chars(t_list_map head, t_scale scale)
 {
 	int	i;
 	int	j;
@@ -61,11 +60,11 @@ int	check_map_chars(t_list_map head,  t_scale scale)
 				head.map[i][j] == 'S' ||
 				head.map[i][j] == 'E' ||
 				head.map[i][j] == 'W')
-				{
-					++j;
-				}
+			{
+				++j;
+			}
 			else
-				return (0); // Caractere inválido encontrado
+				return (0);
 		}
 		++i;
 	}

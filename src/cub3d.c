@@ -2,13 +2,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_cub3D	cub3D;
+	t_cub3D	cub3d;
 
-	ft_bzero(&cub3D, sizeof(t_cub3D));
+	ft_bzero(&cub3d, sizeof(t_cub3D));
 	if (argc != 2)
 		error_message(ARG_ERR);
-	if (check_map(&cub3D, argv) == FALSE)
+	if (check_map(&cub3d, argv) == FALSE)
 		return (1);
-	init_game(&cub3D);
+	init_game(&cub3d);
 	return (0);
 }

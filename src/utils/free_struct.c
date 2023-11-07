@@ -20,5 +20,3 @@ void	free_mlx_all(t_cub3D *cub3D)
 	mlx_destroy_display(cub3D->s_mlx.mlx);
 	ft_free_ptr(&cub3D->s_mlx.mlx);
 }
-
-
