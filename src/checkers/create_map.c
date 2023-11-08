@@ -15,6 +15,7 @@ int create_map(t_list_map *list, int n_lines, t_file_info *file_info)
 		(check_walls(*list, scale) != 1))
 	{
 		free_tex(file_info);
+		error_message(PARSE_MAP);
 		return 0;
 	}
 	normalize_matrix(list->map);

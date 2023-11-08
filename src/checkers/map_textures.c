@@ -11,18 +11,10 @@ int	map_textures(t_texture_path *textures, t_list_map *head)
 
 	list = get_file_path(head);
 	if (set_places(list, &textures) == 0)
-	{
-		// error_message(TEXTURE_ERR);
-		printf("ola\n");
 		return (0);
-	}
 	check_last_char(&textures);
 	if (validate_textures_file_path(&textures) == 0)
 	{
-						// free(file_info->texture_path.TEX_EA);
-				// free(file_info->texture_path.TEX_EA);
-				// free(file_info->texture_path.TEX_EA);
-				// free(file_info->texture_path.TEX_EA);
 		free(list);
 		return (0);
 	}
