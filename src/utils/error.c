@@ -2,7 +2,6 @@
 
 void	error_message(char *msg)
 {
-	printf("ERROR:");
+	perror("ERROR");
 	perror(msg);
-	exit(127);
 }

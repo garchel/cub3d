@@ -1,7 +1,7 @@
 #ifndef ERROR_MESSAGES_H
 # define ERROR_MESSAGES_H
 
-# define ARG_ERR "Argument error.\nTry: ./cub3d ./maps/beta.cub"
+# define ARG_ERR "Argument error\n"
 # define FILE_NO_ERR "this file don't exist\n"
 # define FILE_NAME_ERR "the file must have a .cub extension\n"
 # define ALLOC_ERR "allocation memory error\n"

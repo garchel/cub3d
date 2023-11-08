@@ -9,21 +9,21 @@ int	map_textures(t_texture_path *textures, t_list_map *head)
 {
 	char	**list;
 
-	// printf("tex = %s\n", head->begin->line);
 	list = get_file_path(head);
 	if (set_places(list, &textures) == 0)
 	{
-		error_message(TEXTURE_ERR);
+		// error_message(TEXTURE_ERR);
+		printf("ola\n");
 		return (0);
 	}
 	check_last_char(&textures);
-	// printf("-> %s\n", textures->TEX_EA);
-	// printf("-> %s\n", textures->TEX_SO);
-	// printf("-> %s\n", textures->TEX_NO);
-	// printf("-> %s\n", textures->TEX_WE);
 	if (validate_textures_file_path(&textures) == 0)
 	{
-		error_message(FILE_NO_ERR);
+						// free(file_info->texture_path.TEX_EA);
+				// free(file_info->texture_path.TEX_EA);
+				// free(file_info->texture_path.TEX_EA);
+				// free(file_info->texture_path.TEX_EA);
+		free(list);
 		return (0);
 	}
 	free(list);

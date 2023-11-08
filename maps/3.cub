@@ -4,11 +4,10 @@
 C 40,42,4    2
 F 14 ,1       7 ,      14
 
-EA         ./textures/42_EA.xpm
-NO                                                     ./textures/42_NO.xpm
-SO ./textures/42_SO.xpm
-WE ./textures/42_WE.xpm 
-
+NO ./textures/title.xpm
+EA ./textures/purple_block.xpm
+SO ./textures/wall1_e.xpm
+WE ./textures/blue_block.xpm
 
 
 
@@ -24,7 +23,7 @@ WE ./textures/42_WE.xpm
 10000000000000001100000010001
 10000000000000001101010010001
 11000000110101000000000000001
-11110111110101000200000000001
+11110111110101000100000000001
 10000000001100000100000010001
 10000000000000001010000101001
 10000000001000010001010001001

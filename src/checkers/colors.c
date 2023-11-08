@@ -1,9 +1,10 @@
 #include "cub3d.h"
 
-unsigned int	get_colors(char ***floor, \
+void	get_colors(char ***floor, \
 	char ***ceiling, t_list_map *head);
 unsigned int	rgb_to_uint(char ***rgb);
-int				have_letters(char *color);
+void remove_space(char *list, char **color);
+
 
 int	colors(t_colors *colors, t_list_map *head)
 {
@@ -12,33 +13,20 @@ int	colors(t_colors *colors, t_list_map *head)
 
 	floor = NULL;
 	ceiling = NULL;
-	// floor = calloc(4, sizeof(char*));
-	// ceiling = calloc(4, sizeof(char*));
-	if (!get_colors(&floor, &ceiling, head))
-		return (0);
+	get_colors(&floor, &ceiling, head);
 	colors->ceiling = rgb_to_uint(&ceiling);
 	if (colors->ceiling == 0)
-		error_message(CEILING_ERR);
+	{
+		ft_free_split(floor);
+		ft_free_split(ceiling);
+		return 0;
+	}
 	colors->floor = rgb_to_uint(&floor);
 	if (colors->floor == 0)
-		error_message(FLOOR_ERR);
+		return 0;
 	ft_free_split(floor);
 	ft_free_split(ceiling);
 	return (1);
-}
-
-int	have_letters(char *color)
-{
-	int	i;
-
-	i = 0;
-	while (color[i])
-	{
-		if (!ft_isdigit(color[i]))
-			return (1);
-		++i;
-	}
-	return (0);
 }
 
 unsigned int	rgb_to_uint(char ***rgb)
@@ -61,43 +49,51 @@ unsigned int	rgb_to_uint(char ***rgb)
 	return ((red << 16) + (green << 8) + blue);
 }
 
-unsigned int	get_colors(char ***floor, \
+void get_colors(char ***floor, \
 	char ***ceiling, t_list_map *head)
 {
 	char	*info_floor;
 	char	*info_ceiling;
-	int		i;
-	int		j;
+	int 	i;
+
+	i = 0;
+	while(i < 2)
+	{
+		if(head->begin->line[0] == 'F')
+		{
+			info_floor = ft_calloc(head->begin->size, sizeof(char));
+			remove_space(head->begin->line, &info_floor);
+			(*floor) = ft_split(info_floor, ',');
+		}
+		else
+		{
+			info_ceiling = ft_calloc(head->begin->size, sizeof(char));
+			remove_space(head->begin->line, &info_ceiling);
+			(*ceiling) = ft_split(info_ceiling, ',');
+		}
+		head->begin = head->begin->next;
+		++i;
+	}
+	free(info_ceiling);
+	free(info_floor);
+}
+
+
+void remove_space(char *list, char **color)
+{
+	int i;
+	int j;
 
 	i = 1;
 	j = 0;
-	info_floor = ft_calloc(head->begin->size, sizeof(char));
-	while (head->begin->line[i])
+	while (list[i])
 	{
-		if (head->begin->line[i] != ' ')
+		if (list[i] != ' ')
 		{
-			info_floor[j] = head->begin->line[i];
+			(*color)[j] = list[i];
 			++j;
 		}
 		++i;
 	}
-	(*floor) = ft_split(info_floor, ',');
-	i = 1;
-	j = 0;
-	info_ceiling = ft_calloc(head->begin->size, sizeof(char));
-	head->begin = head->begin->next;
-	while (head->begin->line[i])
-	{
-		if (head->begin->line[i] != ' ')
-		{
-			info_ceiling[j] = head->begin->line[i];
-			++j;
-		}
-		++i;
-	}
-	(*ceiling) = ft_split(info_ceiling, ',');
-	head->begin = head->begin->next;
-	free(info_ceiling);
-	free(info_floor);
-	return (1);
 }
+

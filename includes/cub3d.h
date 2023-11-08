@@ -27,11 +27,9 @@ int				search_zero_down(t_list_map head, int i, int j, t_scale scale);
 int				search_zero_left(t_list_map head, int i, int j, t_scale scale);
 int				search_zero_up(t_list_map head, int i, int j, t_scale scale);
 t_list_map		*create_list(void);
-char			*next_line(int fd);
 int				get_elements(t_list_map *list, char *ident, \
 t_file_info 	*file_info);
 t_list_map		*create_list(void);
-int				get_files(t_cub3D *cub3D, char **argv);
 t_scale			get_scale(char **map);
 void			add_on_tail(t_list_map *list, char *line);
 char			**linked_to_int(t_list_map *head, int size);
@@ -39,7 +37,7 @@ int				check_walls(t_list_map head, t_scale scale);
 void			normalize_matrix(char **matrix);
 int				map_textures(t_texture_path *textures, t_list_map *head);
 int				colors(t_colors *colors, t_list_map *head);
-char			**create_map(t_list_map *list, int n_lines);
+int             create_map(t_list_map *list, int n_lines, t_file_info *file_info);
 int				process_zeros(t_list_map head, int i, int j, t_scale scale);
 
 //keys
@@ -85,15 +83,18 @@ void			init_game(t_cub3D *cub3D); //init_game
 int				map_has_wall_at(t_cub3D *cub3D, float x, float y);
 int				get_lenght(t_cub3D *cub3D, float line);
 void			error_message(char *msg);
+int             have_letters(char *color);
 
 
 //free
 int				close_win(t_cub3D *cub3D);
-void 			free_tex(t_texture_path *tex);
 void			free_images(t_cub3D *cub3D);
 void			ft_free_ptr(void **ptr);
 char			*ft_free_triple(char ***str);
 char			*ft_free_split(char **str);
 void			free_mlx_all(t_cub3D *cub3D);
+void	        destroy_list(t_list_map **List);
+void            free_tex(t_file_info *info);
+void            free_map(char **map);
 
 #endif

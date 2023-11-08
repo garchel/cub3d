@@ -47,7 +47,6 @@ SRC_LIST		=	$(MLX_UTILS)utils_mlx.c\
 					$(CHECKERS)colors.c\
 					$(CHECKERS)create_map.c\
 					$(CHECKERS)get_elements.c\
-					$(CHECKERS)get_files.c\
 					$(CHECKERS)linked_list.c\
 					$(CHECKERS)map_textures.c\
 					$(CHECKERS)search_directions.c\

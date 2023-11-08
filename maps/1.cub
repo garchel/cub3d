@@ -4,10 +4,11 @@
 C 40,42,4    2
 F 14 ,1       7 ,      14
 
-EA         ./textures/42_EA.xpm
-NO                                                     ./textures/42_NO.xpm
-SO ./textures/42_SO.xpm
-WE ./textures/42_WE.xpm 
+NO ./textures/title.xpm
+EA ./textures/purple_block.xpm
+SO ./textures/wall1_e.xpm
+WE ./textures/blue_block.xpm
+
 
 
 

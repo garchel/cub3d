@@ -2,7 +2,7 @@
 
 int	check_map_chars(t_list_map head, t_scale scale);
 
-char	**create_map(t_list_map *list, int n_lines)
+int create_map(t_list_map *list, int n_lines, t_file_info *file_info)
 {
 	t_scale		scale;
 	t_node_map	*init;
@@ -13,10 +13,13 @@ char	**create_map(t_list_map *list, int n_lines)
 	scale = get_scale(list->map);
 	if ((check_map_chars(*list, scale) != 1) || \
 		(check_walls(*list, scale) != 1))
-		error_message(PARSE_MAP);
+	{
+		free_tex(file_info);
+		return 0;
+	}
 	normalize_matrix(list->map);
 	list->map[scale.height - 1][scale.width - 1] = '1';
-	return (list->map);
+	return (1);
 }
 
 void	normalize_matrix(char **matrix)

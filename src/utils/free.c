@@ -3,29 +3,9 @@
 int	close_win(t_cub3D *cub3D)
 {
 	free_mlx_all(cub3D);
-	free(cub3D->file_info.texture_path.TEX_EA);
-	free(cub3D->file_info.texture_path.TEX_SO);
-	free(cub3D->file_info.texture_path.TEX_WE);
-	free(cub3D->file_info.texture_path.TEX_NO);
-	free(cub3D->map[0]);
-	free(cub3D->map[1]);
-	free(cub3D->map[2]);
-	free(cub3D->map[3]);
-	free(cub3D->map[4]);
-	free(cub3D->map[5]);
-	free(cub3D->map[6]);
-	free(cub3D->map[7]);
-	free(cub3D->map[8]);
-	free(cub3D->map[9]);
-	free(cub3D->map[10]);
-	free(cub3D->map[11]);
-	free(cub3D->map[12]);
-	free(cub3D->map[13]);
-	free(cub3D->map[14]);
-	free(cub3D->map[15]);
-	free(cub3D->map[16]);
-	free(cub3D->map);
-	exit(0);
+	free_tex(&cub3D->file_info);
+	free_map(cub3D->map);
+	exit(127);
 }
 
 char	*ft_free_triple(char ***str)
@@ -54,11 +34,21 @@ char	*ft_free_split(char **str)
 	return (NULL);
 }
 
-void	ft_free_ptr(void **ptr)
+void free_map(char **map)
 {
-	if (*ptr)
+	int i = 0;
+	while(map[i])
 	{
-		free(*ptr);
-		*ptr = NULL;
+		free(map[i]);
+		++i;
 	}
+	free(map);
+}
+
+void free_tex(t_file_info *info)
+{
+	free(info->texture_path.TEX_EA);
+	free(info->texture_path.TEX_NO);
+	free(info->texture_path.TEX_SO);
+	free(info->texture_path.TEX_WE);
 }

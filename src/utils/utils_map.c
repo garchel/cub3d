@@ -20,3 +20,17 @@ int	get_lenght(t_cub3D *cub3d, float line)
 	else
 		return ((int)ft_strlen(cub3d->map[(int)floor(line / TILE)]));
 }
+
+int	have_letters(char *color)
+{
+	int	i;
+
+	i = 0;
+	while (color[i])
+	{
+		if (!ft_isdigit(color[i]))
+			return (1);
+		++i;
+	}
+	return (0);
+}
