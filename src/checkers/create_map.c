@@ -2,7 +2,7 @@
 
 int	check_map_chars(t_list_map head, t_scale scale);
 
-int create_map(t_list_map *list, int n_lines, t_file_info *file_info)
+int	create_map(t_list_map *list, int n_lines, t_file_info *file_info)
 {
 	t_scale		scale;
 	t_node_map	*init;
@@ -16,7 +16,7 @@ int create_map(t_list_map *list, int n_lines, t_file_info *file_info)
 	{
 		free_tex(file_info);
 		error_message(PARSE_MAP);
-		return 0;
+		return (0);
 	}
 	normalize_matrix(list->map);
 	list->map[scale.height - 1][scale.width - 1] = '1';

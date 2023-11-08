@@ -1,11 +1,11 @@
-F 255, 0, 255 
-C 0, 255,                             255
+F 0, 128, 0 
+C 105,105,105
 
 
-NO ./textures/red_block.xpm
-EA ./textures/brick_block.xpm
-SO ./textures/wall1_e.xpm
-WE ./textures/blue_block.xpm
+NO ./textures/tile_North.xpm
+EA ./textures/tile_East.xpm
+SO ./textures/tile_South.xpm
+WE ./textures/tile_West.xpm
 
 11111
 10011

@@ -34,10 +34,12 @@ char	*ft_free_split(char **str)
 	return (NULL);
 }
 
-void free_map(char **map)
+void	free_map(char **map)
 {
-	int i = 0;
-	while(map[i])
+	int	i;
+
+	i = 0;
+	while (map[i])
 	{
 		free(map[i]);
 		++i;
@@ -45,7 +47,7 @@ void free_map(char **map)
 	free(map);
 }
 
-void free_tex(t_file_info *info)
+void	free_tex(t_file_info *info)
 {
 	free(info->texture_path.TEX_EA);
 	free(info->texture_path.TEX_NO);

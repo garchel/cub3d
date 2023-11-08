@@ -1,33 +1,30 @@
 #include <cub3d.h>
 
-int	check_arg(char **argv)
+int	open_file(t_list_map *list, char **argv)
 {
-	char	**split;
-
-	split = ft_split(argv[1], '.');
-	if (ft_strncmp(split[1], "cub", 4) == 0)
-	{
-		ft_free_split(split);
-		return (1);
-	}
-	return (0);
-}
-
-int	file_info(t_list_map *list, char **argv)
-{
-	char	*current_line;
 	int		fd;
-	int		n_lines;
+	char	*path;
 
-	n_lines = 0;
-	fd = open(argv[1], O_RDONLY);
+	path = ft_strjoin("maps/", argv[1]);
+	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
 		free(list);
 		error_message(FILE_NO_ERR);
+		return (-1);
 	}
 	if (check_arg(argv) == 0)
 		error_message(FILE_NAME_ERR);
+	free(path);
+	return (fd);
+}
+
+int	process_lines(t_list_map *list, int fd)
+{
+	char	*current_line;
+	int		n_lines;
+
+	n_lines = 0;
 	current_line = get_next_line(fd);
 	while (current_line != NULL)
 	{
@@ -38,6 +35,7 @@ int	file_info(t_list_map *list, char **argv)
 		current_line = get_next_line(fd);
 		++n_lines;
 	}
+	close(fd);
 	return (n_lines);
 }
 
@@ -52,25 +50,20 @@ void	store_map_info(t_cub3D *cub3D)
 	cub3D->collors.floor = cub3D->file_info.colors.floor;
 }
 
-int	check_map(t_cub3D *cub3D, char **argv)
+void	map_handler(t_cub3D *cub3D, t_list_map *list, \
+	t_node_map *init, int n_lines)
 {
-	t_list_map	*list;
-	t_node_map	*init;
 	char		**temp_ident;
 	char		*identifier;
-	int			n_lines;
 
-	list = create_list();
-	n_lines = file_info(list, argv);
 	temp_ident = ft_split(list->begin->line, ' ');
 	identifier = temp_ident[0];
-	init = list->begin;
-	if(get_elements(list, identifier, &cub3D->file_info) == 0)
+	if (get_elements(list, identifier, &cub3D->file_info) == 0)
 	{
 		ft_free_split(temp_ident);
 		exit(127);
 	}
-	if(create_map(list, n_lines, &cub3D->file_info) == 0)
+	if (create_map(list, n_lines, &cub3D->file_info) == 0)
 	{
 		free_map(list->map);
 		list->begin = init;
@@ -78,10 +71,26 @@ int	check_map(t_cub3D *cub3D, char **argv)
 		ft_free_split(temp_ident);
 		exit(127);
 	}
+	ft_free_split(temp_ident);
+}
+
+int	check_map(t_cub3D *cub3D, char **argv)
+{
+	t_list_map	*list;
+	t_node_map	*init;
+	int			fd;
+	int			n_lines;
+
+	list = create_list();
+	fd = open_file(list, argv);
+	if (fd < 0)
+		return (FALSE);
+	n_lines = process_lines(list, fd);
+	init = list->begin;
+	map_handler(cub3D, list, init, n_lines);
 	cub3D->map = list->map;
 	list->begin = init;
 	store_map_info(cub3D);
 	destroy_list(&list);
-	ft_free_split(temp_ident);
 	return (TRUE);
 }

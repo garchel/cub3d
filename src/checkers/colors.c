@@ -1,10 +1,9 @@
 #include "cub3d.h"
 
-void	get_colors(char ***floor, \
+void			get_colors(char ***floor, \
 	char ***ceiling, t_list_map *head);
 unsigned int	rgb_to_uint(char ***rgb);
-void remove_space(char *list, char **color);
-
+void			remove_space(char *list, char **color);
 
 int	colors(t_colors *colors, t_list_map *head)
 {
@@ -19,11 +18,11 @@ int	colors(t_colors *colors, t_list_map *head)
 	{
 		ft_free_split(floor);
 		ft_free_split(ceiling);
-		return 0;
+		return (0);
 	}
 	colors->floor = rgb_to_uint(&floor);
 	if (colors->floor == 0)
-		return 0;
+		return (0);
 	ft_free_split(floor);
 	ft_free_split(ceiling);
 	return (1);
@@ -49,17 +48,17 @@ unsigned int	rgb_to_uint(char ***rgb)
 	return ((red << 16) + (green << 8) + blue);
 }
 
-void get_colors(char ***floor, \
+void	get_colors(char ***floor, \
 	char ***ceiling, t_list_map *head)
 {
 	char	*info_floor;
 	char	*info_ceiling;
-	int 	i;
+	int		i;
 
 	i = 0;
-	while(i < 2)
+	while (i < 2)
 	{
-		if(head->begin->line[0] == 'F')
+		if (head->begin->line[0] == 'F')
 		{
 			info_floor = ft_calloc(head->begin->size, sizeof(char));
 			remove_space(head->begin->line, &info_floor);
@@ -78,11 +77,10 @@ void get_colors(char ***floor, \
 	free(info_floor);
 }
 
-
-void remove_space(char *list, char **color)
+void	remove_space(char *list, char **color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	j = 0;
@@ -96,4 +94,3 @@ void remove_space(char *list, char **color)
 		++i;
 	}
 }
-

@@ -1,13 +1,13 @@
 #include "cub3d.h"
 
-int free_elements(t_list_map *list,t_file_info *file_info, char *err_msg, t_node_map *init);
-
+int	free_elements(t_list_map *list, t_file_info *file_info, \
+	char *err_msg, t_node_map *init);
 
 int	get_elements(t_list_map *list, char *ident, \
 	t_file_info *file_info)
 {
-	t_node_map *init;
-	int	i;
+	t_node_map	*init;
+	int			i;
 
 	init = list->begin;
 	i = 0;
@@ -33,11 +33,12 @@ int	get_elements(t_list_map *list, char *ident, \
 	return (1);
 }
 
-int free_elements(t_list_map *list,t_file_info *file_info, char *err_msg, t_node_map *init)
+int	free_elements(t_list_map *list, t_file_info *file_info, \
+	char *err_msg, t_node_map *init)
 {
 	list->begin = init;
 	free_tex(file_info);
 	destroy_list(&list);
 	error_message(err_msg);
-	return 0;
+	return (0);
 }

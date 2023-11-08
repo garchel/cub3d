@@ -7,8 +7,10 @@ int	main(int argc, char **argv)
 	ft_bzero(&cub3d, sizeof(t_cub3D));
 	if (argc != 2)
 		error_message(ARG_ERR);
+	printf("argc: OK \n");
 	if (check_map(&cub3d, argv) == FALSE)
 		return (1);
+	printf("check_map: OK \n");
 	init_game(&cub3d);
 	return (0);
 }

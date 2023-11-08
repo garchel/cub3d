@@ -28,3 +28,15 @@ t_scale	get_scale(char **map)
 	return (scale);
 }
 
+int	check_arg(char **argv)
+{
+	char	**split;
+
+	split = ft_split(argv[1], '.');
+	if (ft_strncmp(split[1], "cub", 4) == 0)
+	{
+		ft_free_split(split);
+		return (1);
+	}
+	return (0);
+}
