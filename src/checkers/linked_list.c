@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:01:03 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 01:01:04 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 02:27:44 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	**linked_to_int(t_list_map *head, int size)
 		while (j < head->begin->size)
 		{
 			if (head->begin->line[j] == ' ')
-				head->begin->line[j] = '0';
+				head->begin->line[j] = '4';
 			map[i][j] = (head->begin->line[j]);
 			++j;
 		}

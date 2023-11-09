@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:00:54 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 01:00:56 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 02:30:13 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	normalize_matrix(char **matrix)
 		j = 0;
 		while (matrix[i][j])
 		{
-			if (matrix[i][j] == '3')
+			if (matrix[i][j] == '3' || matrix[i][j] == '4')
 				matrix[i][j] = '0';
 			if (matrix[i][j] == -1)
 			{
@@ -72,6 +72,7 @@ int	check_map_chars(t_list_map head, t_scale scale)
 		{
 			if (head.map[i][j] == '1' ||
 				head.map[i][j] == '0' ||
+				head.map[i][j] == '4' ||
 				head.map[i][j] == 'N' ||
 				head.map[i][j] == 'S' ||
 				head.map[i][j] == 'E' ||

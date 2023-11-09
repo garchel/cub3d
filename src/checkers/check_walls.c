@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:00:45 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 01:00:47 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 02:09:05 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_walls(t_list_map head, t_scale scale)
 			if ((head.map[i][j] == '1') && \
 				find_adjacent_zero(head, i, j, scale) != 0)
 			{
-				return (process_zeros(head, i, j, scale));
+				return (process_zeros(head, i, j, scale)); // Passa a pos do 1 que tem o 0 do lado
 			}
 			++j;
 		}
@@ -58,9 +58,9 @@ int	find_adjacent_zero(t_list_map head, int i, int j, t_scale scale)
 		return (1);
 	else if (i + 1 < scale.height && head.map[i + 1][j] == '0')
 		return (1);
-	else if (j - 1 > 0 && head.map[i][j - 1] == '0')
+	else if (j - 1 == 0 && head.map[i][j - 1] == '0')
 		return (1);
-	else if (i - 1 > 0 && head.map[i - 1][j] == '0')
+	else if (i - 1 == 0 && head.map[i - 1][j] == '0')
 		return (1);
 	else
 		return (0);
