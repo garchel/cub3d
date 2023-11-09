@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:01:10 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 02:32:01 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 02:44:20 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	search_zero_right(t_list_map head, int i, int j, t_scale scale)
 	{
 		if (j + 1 == scale.width || head.map[i][j + 1] == '4')
 		{
-			printf("Entrou no if da zero right \n");
 			return (0);
 		}
 	}
@@ -44,7 +43,6 @@ int	search_zero_down(t_list_map head, int i, int j, t_scale scale)
 	{
 		if (i + 1 == scale.height || head.map[i + 1][j] == '4')
 		{
-			printf("Entrou no if da zero down \n");
 			return (0);
 		}
 	}
@@ -65,8 +63,6 @@ int	search_zero_left(t_list_map head, int i, int j, t_scale scale)
 	{
 		if (j == 0 || head.map[i][j - 1] == '4')
 		{
-			printf("Entrou no if da zero left \n");
-			printf("[i]: %d [j] %d\n", i, j);
 			return (0);
 		}
 	}
@@ -87,7 +83,6 @@ int	search_zero_up(t_list_map head, int i, int j, t_scale scale)
 	{
 		if (i == 0 || head.map[i - 1][j] == '4')
 		{
-			printf("Entrou no if da zero up \n");
 			return (0);
 		}
 	}
