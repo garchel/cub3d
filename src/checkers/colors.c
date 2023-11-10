@@ -6,14 +6,13 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:00:51 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 01:00:52 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/10 20:31:20 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void			get_colors(char ***floor, \
-	char ***ceiling, t_list_map *head);
+int				get_colors(char ***floor, char ***ceiling, t_list_map *head);
 unsigned int	rgb_to_uint(char ***rgb);
 void			remove_space(char *list, char **color);
 
@@ -24,7 +23,8 @@ int	colors(t_colors *colors, t_list_map *head)
 
 	floor = NULL;
 	ceiling = NULL;
-	get_colors(&floor, &ceiling, head);
+	if (!get_colors(&floor, &ceiling, head))
+		return (0);
 	colors->ceiling = rgb_to_uint(&ceiling);
 	if (colors->ceiling == 0)
 	{
@@ -60,33 +60,32 @@ unsigned int	rgb_to_uint(char ***rgb)
 	return ((red << 16) + (green << 8) + blue);
 }
 
-void	get_colors(char ***floor, \
-	char ***ceiling, t_list_map *head)
+int	get_colors(char ***floor, char ***ceiling, t_list_map *head)
 {
-	char	*info_floor;
-	char	*info_ceiling;
+	char	*info;
 	int		i;
 
 	i = 0;
+	if (head->begin->line[0] == head->begin->next->line[0])
+		return (0);
 	while (i < 2)
 	{
+		info = ft_calloc(head->begin->size, sizeof(char));
+		remove_space(head->begin->line, &info);
 		if (head->begin->line[0] == 'F')
-		{
-			info_floor = ft_calloc(head->begin->size, sizeof(char));
-			remove_space(head->begin->line, &info_floor);
-			(*floor) = ft_split(info_floor, ',');
-		}
+			(*floor) = ft_split(info, ',');
+		else if (head->begin->line[0] == 'C')
+			(*ceiling) = ft_split(info, ',');
 		else
 		{
-			info_ceiling = ft_calloc(head->begin->size, sizeof(char));
-			remove_space(head->begin->line, &info_ceiling);
-			(*ceiling) = ft_split(info_ceiling, ',');
+			free(info);
+			return (0);
 		}
+		free(info);
 		head->begin = head->begin->next;
 		++i;
 	}
-	free(info_ceiling);
-	free(info_floor);
+	return (1);
 }
 
 void	remove_space(char *list, char **color)
