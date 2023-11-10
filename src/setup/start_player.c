@@ -6,28 +6,33 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:01:50 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 01:01:51 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:46:51 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	find_player_position(t_cub3D *cub3D);
+static int	find_player_position(t_cub3D *cub3D);
 static void	save_initial_angle(t_cub3D *cub3D);
 static void	save_orientation(t_cub3D *cub3D, char c);
 
-void	start_player(t_cub3D *cub3D)
+int	start_player(t_cub3D *cub3D)
 {
 	ft_bzero(&cub3D->player, sizeof(t_player));
-	find_player_position(cub3D);
+	if (!find_player_position(cub3D))
+	{
+		error_message(PLAYER_NF);
+		return (0);
+	}
 	save_initial_angle(cub3D);
 	cub3D->player.turn_direction = 0;
 	cub3D->player.walk_direction = 0;
 	cub3D->player.walk_speed = 10;
 	cub3D->player.turn_speed = 2 * (PI / 180);
+	return (1);
 }
 
-static void	find_player_position(t_cub3D *cub3D)
+static int	find_player_position(t_cub3D *cub3D)
 {
 	int		x;
 	size_t	y;
@@ -45,12 +50,13 @@ static void	find_player_position(t_cub3D *cub3D)
 				cub3D->player.y = (x * TILE) + (TILE / 2);
 				save_orientation(cub3D, cub3D->map[x][y]);
 				cub3D->map[x][y] = '0';
-				break ;
+				return (1);
 			}
 			y++;
 		}
 		x++;
 	}
+	return (0);
 }
 
 static void	save_initial_angle(t_cub3D *cub3D)

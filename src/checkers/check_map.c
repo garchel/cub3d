@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:00:37 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 01:00:38 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:32:14 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	open_file(t_list_map *list, char **argv)
 		return (-1);
 	}
 	if (check_arg(argv) == 0)
+	{
 		error_message(FILE_NAME_ERR);
+		return (-1);
+	}
 	free(path);
 	return (fd);
 }

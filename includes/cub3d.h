@@ -66,8 +66,8 @@ int				is_ray_facing_right(float angle);
 int				is_ray_facing_left(float angle);
 
 //setup
-void			setup(t_cub3D *cub3D);
-void			start_player(t_cub3D *cub3D);
+int			setup(t_cub3D *cub3D);
+int			start_player(t_cub3D *cub3D);
 void			start_textures(t_cub3D *cub3D);
 
 //action
@@ -78,7 +78,7 @@ void			draw_gaming(t_cub3D *cub3D);
 
 //cub3D3D
 int				check_map(t_cub3D *cub3D3d, char **argv);
-void			init_game(t_cub3D *cub3D); //init_game
+int			init_game(t_cub3D *cub3D); //init_game
 
 //utils
 int				map_has_wall_at(t_cub3D *cub3D, float x, float y);

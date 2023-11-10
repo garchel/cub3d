@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:01:10 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 02:44:20 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:24:12 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	search_zero_right(t_list_map head, int i, int j, t_scale scale)
 {
 	if (head.map[i][j] != '1' && head.map[i][j] != '4')
 	{
-		if (j + 1 == scale.width || head.map[i][j + 1] == '4')
+		if (j + 1 == scale.width || head.map[i][j + 1] == '4' || head.map[i][j + 1] == -1)
 		{
 			return (0);
 		}

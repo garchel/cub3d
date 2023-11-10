@@ -13,5 +13,6 @@
 # define CHAR_FAIL "invalid character\n"
 # define PARSE_MAP "parse map error\n"
 # define FAIL_WALL "invalid wall\n"
+# define PLAYER_NF "Player not found inside map\n"
 
 #endif
