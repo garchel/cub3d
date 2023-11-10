@@ -82,14 +82,17 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(MLX) $(OBJS_DIR) $(OBJS)
 	@printf "\n"
 	@cc $(CFLAGS) $(OBJS) $(LFLAGS) $(LIBS) -o $(NAME)
-	@echo " $(CYAN)$(NAME): $(GREEN)Done!"
+	@echo " $(CYAN)Cub3D: $(GREEN)Done! ✅"
 	@echo -n "$(RESET)"
 
 $(LIBFT):
 	@make -sC $(LIBFT_PATH)
 
 $(MLX):
-	@make -sC $(MLX_PATH)
+	@printf "$(YELLOW)Integrating: $(CYAN) Minilibx 🧠\n"
+	@make -sC $(MLX_PATH) --no-print-directory --silent >/dev/null 2>&1
+	@echo " $(CYAN)$ Minilibx: $(GREEN)Done! ✅"
+	@echo -n "$(RESET)"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
@@ -104,7 +107,7 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
 	@cc $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@printf "$(YELLOW)Generating $(CYAN)$(NAME) $(YELLOW)objects... %-33.33s\r" $@
+	@printf "$(YELLOW)Generating: $(CYAN)  Cub3D $(YELLOW) 🤖🔎  %-33.33s\r" $@
 
 clean:
 	@make -sC $(LIBFT_PATH) clean
