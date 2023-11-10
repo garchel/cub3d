@@ -14,5 +14,6 @@
 # define PARSE_MAP "Parse map error\n"
 # define FAIL_WALL "Invalid wall\n"
 # define PLAYER_NF "Something wrong with Player Disposal\n"
+# define INCOMPLETE_FILE "File configurations is incomplete\n"
 
 #endif

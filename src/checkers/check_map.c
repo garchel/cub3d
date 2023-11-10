@@ -102,6 +102,12 @@ int	check_map(t_cub3D *cub3D, char **argv)
 	if (fd < 0)
 		return (FALSE);
 	n_lines = process_lines(list, fd);
+	if(n_lines < 7)
+	{
+		error_message(INCOMPLETE_FILE);
+		destroy_list(&list);
+		exit(127);
+	}
 	init = list->begin;
 	map_handler(cub3D, list, init, n_lines);
 	cub3D->map = list->map;
