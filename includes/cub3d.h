@@ -40,6 +40,8 @@ int				colors(t_colors *colors, t_list_map *head);
 int             create_map(t_list_map *list, int n_lines, t_file_info *file_info);
 int				process_zeros(t_list_map head, int i, int j, t_scale scale);
 int				check_arg(char **argv);
+int				is_player_position(char c);
+int				is_map_position(char c);
 
 //keys
 int				key_release(int key, t_cub3D *cub3D3d);

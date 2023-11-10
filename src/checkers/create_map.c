@@ -63,29 +63,29 @@ int	check_map_chars(t_list_map head, t_scale scale)
 {
 	int	i;
 	int	j;
+	int	found;
 
-	i = 0;
-	while (i <= scale.height - 1 && head.map[i] != NULL)
+	i = -1;
+	found = 0;
+	while (++i <= scale.height - 1 && head.map[i] != NULL)
 	{
 		j = 0;
 		while (j <= scale.width - 2 && head.map[i][j] != -1)
 		{
-			if (head.map[i][j] == '1' ||
-				head.map[i][j] == '0' ||
-				head.map[i][j] == '4' ||
-				head.map[i][j] == 'N' ||
-				head.map[i][j] == 'S' ||
-				head.map[i][j] == 'E' ||
-				head.map[i][j] == 'W')
+			if (is_map_position(head.map[i][j]))
+				j++;
+			else if (is_player_position(head.map[i][j]))
 			{
-				++j;
+				found++;
+				j++;
 			}
 			else
-				return (0);
+				found = -1;
 		}
-		++i;
 	}
-	return (1);
+	if (found == 1)
+		return (1);
+	return (0);
 }
 
 t_pos	return_pos(int **matrix, t_pos pos)

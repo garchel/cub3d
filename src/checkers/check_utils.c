@@ -52,3 +52,13 @@ int	check_arg(char **argv)
 	}
 	return (0);
 }
+
+int	is_player_position(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	is_map_position(char c)
+{
+	return (c == '0' || c == '1' || c == '4');
+}

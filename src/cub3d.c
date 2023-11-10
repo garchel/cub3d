@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		error_message(ARG_ERR);
-		return(0);
+		return (0);
 	}
 	if (check_map(&cub3d, argv) == FALSE)
 		return (1);

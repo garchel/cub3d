@@ -193,7 +193,7 @@ typedef struct s_list_map
 {
     t_node_map *begin;
     t_node_map *end;
-	char **map;
+	char		**map;
 } t_list_map;
 
 typedef struct s_scale
