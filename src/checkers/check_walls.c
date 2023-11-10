@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:00:45 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/10 18:30:31 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:19:17 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	find_adjacent_zero(t_list_map head, int i, int j, t_scale scale);
 int	process_zeros(t_list_map head, int i, int j, t_scale scale);
+
 
 int	check_walls(t_list_map head, t_scale scale)
 {

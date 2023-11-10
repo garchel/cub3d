@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:01:06 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/10 18:31:13 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/09 01:01:07 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,16 @@
 
 void	check_last_char(t_texture_path **texture);
 char	**get_file_path(t_list_map *head);
-int		set_places(char **list, t_texture_path **textures, \
-	char	**line_splitted);
+int		set_places(char **list, t_texture_path **textures);
 int		validate_textures_file_path(t_texture_path **textures);
 
 int	map_textures(t_texture_path *textures, t_list_map *head)
 {
 	char	**list;
-	char	**line_splitted;
 
 	list = get_file_path(head);
-	line_splitted = ft_split(list[0], ' ');
-	if (set_places(list, &textures, line_splitted) == 0)
-	{
-		ft_free_split(line_splitted);
-		free(list);
+	if (set_places(list, &textures) == 0)
 		return (0);
-	}
 	check_last_char(&textures);
 	if (validate_textures_file_path(&textures) == 0)
 	{
@@ -57,16 +50,15 @@ char	**get_file_path(t_list_map *head)
 	return (list);
 }
 
-int	set_places(char **list, t_texture_path **textures, char	**line_splitted)
+int	set_places(char **list, t_texture_path **textures)
 {
 	int		i;
+	char	**line_splitted;
 
 	i = 0;
-	if (!(*textures)->TEX_EA || !(*textures)->TEX_SO || \
-		!(*textures)->TEX_NO || !(*textures)->TEX_WE)
-		return (0);
 	while (list[i])
 	{
+		line_splitted = ft_split(list[i], ' ');
 		if (ft_strncmp(line_splitted[0], "EA", 2) == 0)
 			(*textures)->TEX_EA = ft_strdup(line_splitted[1]);
 		else if (ft_strncmp(line_splitted[0], "NO", 2) == 0)
@@ -77,6 +69,7 @@ int	set_places(char **list, t_texture_path **textures, char	**line_splitted)
 			(*textures)->TEX_SO = ft_strdup(line_splitted[1]);
 		else
 			return (0);
+		ft_free_split(line_splitted);
 		++i;
 	}
 	return (1);
