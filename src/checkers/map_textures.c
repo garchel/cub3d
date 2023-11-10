@@ -53,30 +53,29 @@ char	**get_file_path(t_list_map *head)
 	return (list);
 }
 
-int	set_places(char **list, t_texture_path **textures)
+int	set_places(char **list, t_texture_path **tex)
 {
 	int		i;
-	char	**line_splitted;
+	char	**split;
 
-	i = 0;
-	while (list[i])
+	i = -1;
+	while (list[++i])
 	{
-		line_splitted = ft_split(list[i], ' ');
-		if (ft_strncmp(line_splitted[0], "NO", 2) == 0 && i == 0)
-			(*textures)->TEX_NO = ft_strdup(line_splitted[1]);
-		else if (ft_strncmp(line_splitted[0], "EA", 2) == 0 && i == 1)
-			(*textures)->TEX_EA = ft_strdup(line_splitted[1]);
-		else if (ft_strncmp(line_splitted[0], "SO", 2) == 0 && i == 2)
-			(*textures)->TEX_SO = ft_strdup(line_splitted[1]);
-		else if (ft_strncmp(line_splitted[0], "WE", 2) == 0 && i == 3)
-			(*textures)->TEX_WE = ft_strdup(line_splitted[1]);
+		split = ft_split(list[i], ' ');
+		if (ft_strncmp(split[0], "NO", 2) == 0 && !(*tex)->TEX_NO)
+			(*tex)->TEX_NO = ft_strdup(split[1]);
+		else if (ft_strncmp(split[0], "EA", 2) == 0 && !(*tex)->TEX_EA)
+			(*tex)->TEX_EA = ft_strdup(split[1]);
+		else if (ft_strncmp(split[0], "SO", 2) == 0 && !(*tex)->TEX_SO)
+			(*tex)->TEX_SO = ft_strdup(split[1]);
+		else if (ft_strncmp(split[0], "WE", 2) == 0 && !(*tex)->TEX_WE)
+			(*tex)->TEX_WE = ft_strdup(split[1]);
 		else
 		{
-			ft_free_split(line_splitted);
+			ft_free_split(split);
 			return (0);
 		}
-		ft_free_split(line_splitted);
-		++i;
+		ft_free_split(split);
 	}
 	return (1);
 }

@@ -22,6 +22,7 @@ int	open_file(t_list_map *list, char **argv)
 	if (fd < 0)
 	{
 		free(list);
+		free(path);
 		error_message(FILE_NO_ERR);
 		return (-1);
 	}
