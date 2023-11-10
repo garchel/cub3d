@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:01:06 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 01:01:07 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/10 20:14:33 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	map_textures(t_texture_path *textures, t_list_map *head)
 
 	list = get_file_path(head);
 	if (set_places(list, &textures) == 0)
+	{
+		free(list);
 		return (0);
+	}
 	check_last_char(&textures);
 	if (validate_textures_file_path(&textures) == 0)
 	{
@@ -59,16 +62,19 @@ int	set_places(char **list, t_texture_path **textures)
 	while (list[i])
 	{
 		line_splitted = ft_split(list[i], ' ');
-		if (ft_strncmp(line_splitted[0], "EA", 2) == 0)
-			(*textures)->TEX_EA = ft_strdup(line_splitted[1]);
-		else if (ft_strncmp(line_splitted[0], "NO", 2) == 0)
+		if (ft_strncmp(line_splitted[0], "NO", 2) == 0 && i == 0)
 			(*textures)->TEX_NO = ft_strdup(line_splitted[1]);
-		else if (ft_strncmp(line_splitted[0], "WE", 2) == 0)
-			(*textures)->TEX_WE = ft_strdup(line_splitted[1]);
-		else if (ft_strncmp(line_splitted[0], "SO", 2) == 0)
+		else if (ft_strncmp(line_splitted[0], "EA", 2) == 0 && i == 1)
+			(*textures)->TEX_EA = ft_strdup(line_splitted[1]);
+		else if (ft_strncmp(line_splitted[0], "SO", 2) == 0 && i == 2)
 			(*textures)->TEX_SO = ft_strdup(line_splitted[1]);
+		else if (ft_strncmp(line_splitted[0], "WE", 2) == 0 && i == 3)
+			(*textures)->TEX_WE = ft_strdup(line_splitted[1]);
 		else
+		{
+			ft_free_split(line_splitted);
 			return (0);
+		}
 		ft_free_split(line_splitted);
 		++i;
 	}
