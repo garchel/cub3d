@@ -6,7 +6,7 @@
 /*   By: pauvicto <pauvicto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 01:00:37 by pauvicto          #+#    #+#             */
-/*   Updated: 2023/11/09 17:32:14 by pauvicto         ###   ########.fr       */
+/*   Updated: 2023/11/11 01:11:47 by pauvicto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	check_map(t_cub3D *cub3D, char **argv)
 	if (fd < 0)
 		return (FALSE);
 	n_lines = process_lines(list, fd);
-	if(n_lines <= 7)
+	if (n_lines <= 7)
 	{
 		error_message(INCOMPLETE_FILE);
 		destroy_list(&list);
