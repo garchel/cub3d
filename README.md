@@ -12,16 +12,16 @@ Customizable floor and ceiling colors
 ### What I Learned
 Developing this project provided valuable experience in:
 
-#### Graphics Programming: Implementing a raycasting algorithm to create a 3D perspective from a 2D map.
-#### Game Development Fundamentals: Creating a game loop, handling user input, and managing game state.
-#### File Parsing: Reading and interpreting a custom file format (.cub) to generate the game map and settings.
-#### Mathematics in Computer Graphics: Applying trigonometry and vector calculations for player movement and raycasting.
-#### Memory Management: Ensuring proper allocation and deallocation of resources to prevent memory leaks.
-#### Software Architecture: Designing a structure for a complex program with multiple interconnected components.
-#### Problem Solving: Debugging and optimizing the raycasting algorithm for smooth performance.
-#### Working with External Libraries: Utilizing the MinilibX library for creating windows and handling events.
-#### Error Handling: Implementing robust error checking for file parsing and runtime issues.
-#### Code Organization: Managing a larger-scale project with multiple source files and a Makefile.
+* Graphics Programming: Implementing a raycasting algorithm to create a 3D perspective from a 2D map.
+* Game Development Fundamentals: Creating a game loop, handling user input, and managing game state.
+* File Parsing: Reading and interpreting a custom file format (.cub) to generate the game map and settings.
+* Mathematics in Computer Graphics: Applying trigonometry and vector calculations for player movement and raycasting.
+* Memory Management: Ensuring proper allocation and deallocation of resources to prevent memory leaks.
+* Software Architecture: Designing a structure for a complex program with multiple interconnected components.
+* Problem Solving: Debugging and optimizing the raycasting algorithm for smooth performance.
+* Working with External Libraries: Utilizing the MinilibX library for creating windows and handling events.
+* Error Handling: Implementing robust error checking for file parsing and runtime issues.
+* Code Organization: Managing a larger-scale project with multiple source files and a Makefile.
 
 ### Usage
 
